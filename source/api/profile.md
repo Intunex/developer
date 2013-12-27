@@ -3,7 +3,7 @@ layout: api
 title: List users
 subtitle: List users through the xTune API
 sub_menu: profile
-date: 2013-12-17
+date: 2013-12-27
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>

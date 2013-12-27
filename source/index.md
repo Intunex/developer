@@ -2,7 +2,7 @@
 layout: default
 title: xTune Developers
 subtitle: Welcome to xTune Developer Community
-date: 2013-12-17
+date: 2013-12-27
 ---
 
 ## About xTune Developer Community
