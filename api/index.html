@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>xTune API &middot; xTune Developer Community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Intunex Oy.">
+    
+        
+        
+        
+    <link rel="shortcut icon" href="http://naakka.net/img/favicon.ico" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+  <link href="http://naakka.net/css/main.css" rel="stylesheet">  
+      </head>
+  <body>
+    <!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="http://naakka.net">xTune Developers</a>
+
+    <ul>
+      <li  class="pure-menu-selected" ><a href="http://naakka.net/api/">API</a></li>
+      <li ><a href="http://naakka.net/blog/">Blog</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="pure-g-r side-menu" id="layout">
+  <!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li  class="pure-menu-selected"><a href="/api/">Basics</a></li>
+          <li ><a href="/api/authentication/">Authentication</a></li>
+          <li ><a href="/api/profile/">User Profiles</a></li>
+          <li ><a href="/api/skill/">Skills</a></li>
+          <li ><a href="/api/swarm/">Swarms</a></li>
+      </ul>
+  </div>
+</div>
+  <div class="pure-u-1" id="main">
+    <div class="header">
+  <h1>xTune API</h1>
+      <h2>xTune API Documentation</h2>
+  </div>
+
+    <div class="content">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#versioning">Versioning</a></li>
+        <li><a href="#browsing">Browsing the API</a></li>
+        <li><a href="#format">Format</a></li>
+        <li><a href="#responses">Responses</a></li>
+    </ul>
+</div>
+
+<h2 id="about">About xTune API</h2>
+
+<p>xTune API is designed to be flexible and developer friendly. It's designed around
+RESTful principles.</p>
+
+<h2 id="versioning">Versioning</h2>
+
+<p>We do our best not to brake backwards compatibility, but this can happen in some
+unforeseen circumstances. Therefore, we provide the possibility to define which
+version of the API you are accessing and get the contents in the format you want.</p>
+
+<p>You can define the version using <code>Content-Type</code> HTTP header as
+follows:</p>
+
+<pre><code>application/vnd.xtune.YYYYMMDD+json
+</code></pre>
+
+<p>Where <code>YYYYMMDD</code> is the version (based on date, obviously) you requested.
+You don't have to define the content-type, then you will just get the latest version.</p>
+
+<h2 id="browsing">Browsing the API</h2>
+
+<p>xTune API URI endpoints are designed to be as permanent as possible. But things change
+and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
+endpoints into your application. Instead, ask the initial endpoints through the API.</p>
+
+<p>For exapmle, calling the root of the api at <code>/api</code> will return the current user, and the user object 
+includes the URI for the user. Almost all objects include a <code>resources</code> object,
+which includes URI endpoints for resources belonging to that object.</p>
+
+<p>For instance, the user object includes</p>
+
+<pre><code>"resources":{
+  "skills":"/api/user/12345/skill",
+  "colleagues":"/api/user/12345/colleague"
+}
+</code></pre>
+
+<p>Use the URI endpoints defined in the <code>resources</code> object and don't harcode
+the endpoints. If you want to get the user's skills, for instance, don't hardcode 
+the uri as <code>/api/user/:user_id/skill</code> but use the URI defined in resources 
+instead.</p>
+
+<p>Of course, hopefully we will never have the need to change our URI format, but you 
+never know. It's good to get this right from the start.</p>
+
+<h2 id="format">Format</h2>
+
+<p>All responses from xTune are returned in <code>JSON</code> format.</p>
+
+<h2 id="responses">Responses</h2>
+
+<p>We embrace the HTTP specification and set the status codes, content types
+and other HTTP headers accordingly. Almost all responses have some common 
+elements in them. These are described below.</p>
+
+<h3>Listings</h3>
+
+<p>All listing responses through the API will be in the following format. Here's
+an example of what a call to <code>/api/user?limit=20&amp;amp;offset=0</code> could look like.</p>
+
+<pre><code>{
+  "limit":20,                             // Current limit, defaults to 20
+  "offset":0,                             // Current offset, defaults to 0
+  "total_count":312,                      // Total number of objects
+  "previous":null,                        // Pagination, previous set
+  "next":"/api//user?offset=20&amp;limit=20", // Pagination, next set
+  "collection": [                         // The user collection
+    ....
+  ]
+}
+</code></pre>
+
+<h3>Objects</h3>
+
+<p>Almost all objects will include some common elements. Here's an example of
+a user object:</p>
+
+<pre><code>{
+  "id":12345,              // All objects have an `id`
+  "uri":"/api/user/12345", // Object URI is always included as `uri`
+  "created_at" :           // Timestamps telling when the object was created... 
+  "updated_at" :           // ... and when it was modified.
+}
+</code></pre>
+
+<p>Most objects include a <code>resources</code> object which includes
+URIs to other resources belonging to this object. For example, the user
+object include skills and colleagues in the following format</p>
+
+<pre><code>{
+  "id":12345,          
+  "uri":"/api/user/12345", 
+  "resources":{
+    "skills":"/api/user/12345/skill",
+    "colleagues":"/api/user/12345/colleague"
+  }
+}
+</code></pre>
+
+<p>Using these API endpoints it's easy to get extra resources related to the
+object.</p>
+
+<h2>Fetch URI endpoints and current user</h2>
+
+<p><em>Endpoint: <code>/api</code></em></p>
+
+<p>This is the perfect starting points for using the API. Calling <code>/api</code> 
+will return the current user object and the URI endpoints for our API.</p>
+
+<table class="pure-table ">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Fetch URI endpoints</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>{
+  "current_user":{
+    "id":12345,
+    "uri":"/api/user/12345",
+    "resources":{
+      "skills":"/api/user/12345/skill",
+      "colleagues":"/api/user/12345/colleague"
+    },
+    "name":"Test User",
+    "description":"I'm just a PHP programmer.",
+    "job_title":"PHP Coder.",
+    "location":"Helsinki, Finland",
+    "department":"Research and Development, Intunex HQ",
+    "job_rotation":true,
+     "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
+    "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
+    "email":"testuser@xtune.fi",
+    "phone":"412 4214 421421412",
+    "mobile":"+358 40 123 4567",
+    "twitter":"intunex",
+    "linkedin_url":"http://linkedin.com/",
+    "website":"http://intunex.fi",
+    "created_at" :
+    "updated_at" : 
+  },
+  "resources":{
+    "users":"/api/user",
+    "skills":"/api/skill",
+    "swarms":"/api/swarm"
+  }
+}
+</code></pre>
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+    <div class="pure-g-r side-menu" id="footer">
+    <div class="pure-u-1-2">
+      &copy; Intunex Oy 2013
+  </div><div class="pure-u-1-2">
+              <div class="pull-right">
+          Updated on 17 Dec 2013
+        </div>
+        </div>
+</div>
+    <script src="http://naakka.net/js/main.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17540740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+  </body>
+</html>
