@@ -1,0 +1,13 @@
+<ul class="pure-paginator">
+    {% if page.pagination.previous_page %}
+      <li class="pull-left">
+        <a class="pure-button " href="{{ site.url }}{{ page.pagination.previous_page.url }}"><i class="fa fa-arrow-circle-left"></i> Newer posts</a>
+      </li>
+    {% endif %}
+
+    {% if page.pagination.next_page %}
+      <li class="pull-right">
+        <a class="pure-button" href="{{ site.url }}{{ page.pagination.next_page.url }}">Older posts <i class="fa fa-arrow-circle-right"></i></a>
+      </li>
+    {% endif %}
+</ul>

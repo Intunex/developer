@@ -1,0 +1,11 @@
+<!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="{{ site.url }}">xTune Developers</a>
+
+    <ul>
+      <li {% if section == "api" %} class="pure-menu-selected" {% endif %}><a href="{{ site.url }}/api/">API</a></li>
+      <li {% if section == "blog" %} class="pure-menu-selected" {% endif %}><a href="{{ site.url }}/blog/">Blog</a></li>
+      </ul>
+    </div>
+</div>

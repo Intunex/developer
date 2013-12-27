@@ -1,0 +1,7 @@
+.project
+.settings
+output_dev
+output_prod
+sculpin.phar
+.buildpath
+

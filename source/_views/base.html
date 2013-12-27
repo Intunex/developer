@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{{ page.title }}{% endblock %} &middot; {{ site.title }}</title>
+    <meta charset="utf-8">
+    <meta name="author" content="{{ site.author.name }}">
+    
+    {% if page.meta.description is not empty %}
+      {% set description = page.meta.description %}
+    {% elseif page.excerpt is not empty %}
+      {% set description = page.excerpt %}
+    {% elseif page.blocks.content is not empty %}
+      {% set description = page.blocks.content %}
+    {% endif %}
+    
+    {% if description is not empty %}
+      <meta name="description" content="{{ description | striptags | slice(0, 150) }}">    
+    {% endif %}
+    
+    {% if page.tags is not empty %}
+      <meta name="keywords" content="{{ page.tags | join(', ') }}">
+    {% endif %}
+    
+    <link rel="shortcut icon" href="{{ site.url }}/img/favicon.ico" />
+
+    {% block head %}{% endblock %}
+          
+    {% block css %}{% endblock %}
+    {% block js_head %}{% endblock %}
+  </head>
+  <body>
+    {% block body %}{% endblock %}
+    {% block footer %}{% endblock %}
+    {% block js_footer %}{% endblock %}
+    {% include 'fragments/google-analytics' %} 
+  </body>
+</html>

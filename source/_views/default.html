@@ -1,0 +1,20 @@
+{% extends 'base_purecss' %}
+
+{% block body %}
+{% include "/menus/main_menu.html" %}
+<div class="pure-g-r" id="layout">
+  <div class="pure-u-1" id="main">
+    {% include "/elements/header.html" %}
+  
+    <div class="content">
+      {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+{% endblock %}
+
+{% block footer %}
+<div class="pure-g-r" id="footer">
+  {% include "/elements/footer.html" %}
+</div>
+{% endblock %}
