@@ -3,7 +3,7 @@ layout: api
 title: List Skills
 subtitle: Get skills through the xTune API
 sub_menu: skill
-date: 2013-12-27
+date: 2014-01-22
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -16,7 +16,7 @@ date: 2013-12-27
 
 <h2 id="all">Fetch All Skills</h2>
 
-*Endpoint: `/api/skill`*
+*Endpoint: `/api/skill/`*
 
 List all skills in xTune. 
 
@@ -49,32 +49,32 @@ An example of a return response:
       "offset":0,
       "total_count":214,
       "previous":null,
-      "next":"/api/skill?offset=20&limit=20",
+      "next":"/api/skill/?offset=20&limit=20",
       "collection": [
         {
           "id":67521,
-          "uri":"/api/skill?skill=Scrum",
+          "uri":"/api/skill/?skill=Scrum",
           "name":"Scrum",
           "description":"Scrum is an agile method.",
           "competence_avg": 65,
           "interest_avg": 78,
           "expert_count": 250,
           "resources":{
-            "users":"/api/user?skill[]=Scrum",
-            "swarms":"/api/swarm?skill[]=Scrum"
+            "users":"/api/user/?skill[]=Scrum",
+            "swarms":"/api/swarm/?skill[]=Scrum"
           }
         },
         {
           "id":67521,
-          "uri":"/api/skill?skill=PHP",
+          "uri":"/api/skill/?skill=PHP",
           "name":"PHP",
           "description":"PHP is a programming language...",
           "competence_avg": 89,
           "interest_avg": 65,
           "expert_count": 120,
           "resources":{
-            "users":"/api/user?skill[]=PHP",
-            "swarms":"/api/swarm?skill[]=PHP"
+            "users":"/api/user/?skill[]=PHP",
+            "swarms":"/api/swarm/?skill[]=PHP"
           }
         },
         ...
@@ -108,15 +108,15 @@ An example of a return response:
 
     {
       "id":67521,
-      "uri":"/api/skill?skill=Scrum",
+      "uri":"/api/skill/?skill=Scrum",
       "name":"Scrum",
       "description":"Scrum is an agile method.",
       "competence_avg": 89,
       "interest_avg": 65,
       "expert_count": 120,
       "resources":{
-        "users":"/api/user?skill[]=Scrum",
-        "swarms":"/api/swarm?skill[]=Scrum"
+        "users":"/api/user/?skill[]=Scrum",
+        "swarms":"/api/swarm/?skill[]=Scrum"
       }
     }    
 
@@ -124,7 +124,7 @@ An example of a return response:
 
 <h2 id="user">Fetching User Skills</h2>
 
-*Endpoint: `/api/user/:user_id/skill`*
+*Endpoint: `/api/user/:user_id/skill/`*
 
 Fetch a user's personal skills and competences. The skills are ordered by 
 highlight, competence and interest.
@@ -158,11 +158,11 @@ An example of a return response:
       "offset":0,
       "previous":null,
       "total_count": 92
-      "next":"/api/user/123456/skill?offset=20&limit=20",
+      "next":"/api/user/123456/skill/?offset=20&limit=20",
       "collection": [
         {
           "id":67521,
-          "uri":"/api/user/123456/skill/67521",
+          "uri":"/api/user/123456/skill/67521/",
           "name":"Scrum",
           "is_highlight":false,
           "competence":72,
@@ -173,7 +173,7 @@ An example of a return response:
         },
         {
           "id":67523,
-          "uri":"/api/user/123456/skill/67523",
+          "uri":"/api/user/123456/skill/67523/",
           "name":"PHP",
           "is_highlight":true,
           "competence":91,
@@ -186,3 +186,40 @@ An example of a return response:
       ]
     }
 
+
+*Endpoint: `/api/user/:user_id/skill/:skill_id`*
+
+Fetch a single user skill.
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get a single skill by user.</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+An example of a return response:
+
+    {
+      "id":67521,
+      "uri":"/api/user/123456/skill/67521/",
+      "name":"Scrum",
+      "is_highlight":false,
+      "competence":72,
+      "interest":65,
+      "recommendations":3
+      "created_at":
+      "updated_at":
+    }

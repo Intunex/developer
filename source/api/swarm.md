@@ -3,7 +3,7 @@ layout: api
 title: List Swarm
 subtitle: Get swarms through the xTune API
 sub_menu: swarm
-date: 2013-12-27
+date: 2014-01-22
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -16,7 +16,7 @@ date: 2013-12-27
 
 <h2 id="all">List All Swarms</h2>
 
-*Endpoint: `/api/swarm`*
+*Endpoint: `/api/swarm/`*
 
 <table class="pure-table">
     <thead>
@@ -46,12 +46,12 @@ An example of a return response:
       "limit":20,
       "offset":0,
       "previous":null,
-      "next":"/api/swarm?offset=20&limit=20",
+      "next":"/api/swarm/?offset=20&limit=20",
       "total_count":124,
       "collection": [
         {
           "id":67521,
-          "uri":"/api/swarm/67521",
+          "uri":"/api/swarm/67521/",
           "title":"Testing Project",
           "type":"project",
           "description":"This is a testing project.",
@@ -61,8 +61,8 @@ An example of a return response:
           "competence": 78,     // The current user's competence...
           "interest": 90,       // ...and interest for this swarm.
           "resources":{
-            "users":"/api/swarm/67521/user",
-            "skills":"/api/swarm/67521/skill"
+            "users":"/api/swarm/67521/user/",
+            "skills":"/api/swarm/67521/skill/"
           },
           "start_at"::
           "end_at":
@@ -77,7 +77,7 @@ An example of a return response:
 
 <h2 id="single">Fetch a Single Swarm</h2>
 
-*Endpoint: `/api/swarm/:swarm_id`*
+*Endpoint: `/api/swarm/:swarm_id/`*
 
 Fetch a single swarm based on swarm id.
 
@@ -102,7 +102,7 @@ An example of a return response:
 
     {
       "id":67521,
-      "uri":"/api/swarm/67521",
+      "uri":"/api/swarm/67521/",
       "title":"Testing Project",
       "type":"project",
       "description":"This is a testing project.",
@@ -111,7 +111,7 @@ An example of a return response:
       "location":"Helsinki, Finland",
       "resources":{
         "users":"/api/swarm/67521/user/",
-        "skills":"/api/swarm/67521/skill"
+        "skills":"/api/swarm/67521/skill/"
       },
       "start_at":
       "end_at":
@@ -123,7 +123,7 @@ An example of a return response:
 
 <h2 id="skills">Fetch Skills in Swarm</h2>
 
-*Endpoint: `/api/swarm/:swarm_id/skill`*
+*Endpoint: `/api/swarm/:swarm_id/skill/`*
 
 Fetch skills used in swarm.
 
@@ -139,7 +139,12 @@ Fetch skills used in swarm.
         <tr>
             <td>GET</td>
             <td>Get swarm skills</td>
-            <td>N/A</td>
+            <td>
+              <ul>
+                <li>Offset: <code>int</code> fetch skills starting from (optional, default: 0)</li>
+                <li>Limit: <code>int</code> how many skills to get (optional, default: 20, limit 0-50)</li>
+              </ul>            
+            </td>
         </tr>
     </tbody>
 </table>
@@ -150,21 +155,62 @@ An example of a return response:
       "limit":20,
       "offset":0,
       "previous":null,
-      "next":"/api/swarm/67521/skill?offset=20&limit=20",
+      "next":"/api/swarm/67521/skill/?offset=20&limit=20",
       "total_count":8,
       "collection": [
         {
           "id":8989,
-          "uri":"/api/swarm/67521/skill/8989"
+          "uri":"/api/swarm/67521/skill/8989/"
           "name":"PHP",
-          "competence":75 
+          "competence":75,
+          "is_mandatory":true,
+          "created_at":
+          "updated_at":
         },
         {
           "id":8990,
-          "uri":"/api/swarm/67521/skill/8990"
+          "uri":"/api/swarm/67521/skill/8990/"
           "name":"Unit testing",
-          "competence":65
+          "competence":65,
+          "is_mandatory":false,
+          "created_at":
+          "updated_at":
         },
         ...
       ]
     }
+
+    
+*Endpoint: `/api/swarm/:swarm_id/skill/:skill_id/`*
+
+Get a single swarm skill by `skill_id`.
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get a single swarm skill</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+An example of a return response:
+
+    {
+      "id":8989,
+      "uri":"/api/swarm/67521/skill/8989/"
+      "name":"PHP",
+      "competence":75,
+      "is_mandatory":true,
+      "created_at":
+      "updated_at":
+    }
+    

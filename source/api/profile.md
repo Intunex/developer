@@ -3,7 +3,7 @@ layout: api
 title: List users
 subtitle: List users through the xTune API
 sub_menu: profile
-date: 2013-12-27
+date: 2014-01-22
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -14,7 +14,7 @@ date: 2013-12-27
 
 <h2 id="list">List all users in xTune</h2>
 
-*Endpoint: `/api/user`*
+*Endpoint: `/api/user/`*
 
 <table class="pure-table">
     <thead>
@@ -50,18 +50,18 @@ An example of a return response:
       "offset":0,
       "total_count":214,
       "previous":null,
-      "next":"/api/user?offset=20&limit=20",
+      "next":"/api/user/?offset=20&limit=20",
       "collection": [
         {
           "id":12345,
           "name":"Test User",
-          "uri":"/api/user/12345", 
+          "uri":"/api/user/12345/", 
           "description":"I'm just a PHP programmer.",
           "job_title":"PHP Coder.",
-          "location":"Helsinki, Finland",
-          "department":"Research and Development",
+          "location": ["Helsinki", "Finland"],
+          "department":["Research and Development"],
           "job_rotation":true,
-          "url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
+          "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
           "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
           "email":"testuser@xtune.fi",
           "phone":"412 4214 421421412",
@@ -72,8 +72,7 @@ An example of a return response:
           "competence":45,  // Competence and interest are only available
           "interest":52,    // if you are searching by skills.
           "resources":{
-            "skills":"/api/user/12345/skill",
-            "colleagues":"/api/user/12345/colleague"
+            "skills":"/api/user/12345/skill/"
           },
           "created_at" :
           "updated_at" : 
@@ -86,7 +85,7 @@ An example of a return response:
 
 <h2 id="single">Fetch a single user profile</h2>
 
-*Endpoint: `/api/user/:user_id`*
+*Endpoint: `/api/user/:user_id/`*
 
 <table class="pure-table">
     <thead>
@@ -109,12 +108,12 @@ An example of a return response:
 
     {
       "id":12345,
-      "uri":"/api/user/12345", 
+      "uri":"/api/user/12345/", 
       "name":"Test User",
       "description":"I'm just a PHP programmer.",
       "job_title":"PHP Coder.",
-      "location":"Helsinki, Finland",
-      "department":"Research and Development, Intunex HQ",
+      "location":["Helsinki, Finland"],
+      "department":["Research and Development", "Intunex HQ"],
       "job_rotation":true,
       "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
       "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
@@ -125,8 +124,7 @@ An example of a return response:
       "linkedin_url":"http://linkedin.com/",
       "website":"http://intunex.fi",
       "resources":{
-        "skills":"/api/user/12345/skill",
-        "colleagues":"/api/user/12345/colleague"
+        "skills":"/api/user/12345/skill/"
       },
       "created_at" :
       "updated_at" : 
