@@ -42,28 +42,30 @@ xTune API URI endpoints are designed to be as permanent as possible. But things 
 and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
 endpoints into your application. Instead, ask the initial endpoints through the API.
 
-For exapmle, calling the root of the api at `/api` will return the current user, and the user object 
+For exapmle, calling the root of the api at `/api/` will return the current user, and the user object 
 includes the URI for the user. Almost all objects include a `resources` object,
 which includes URI endpoints for resources belonging to that object.
 
 For instance, the user object includes
 
     "resources":{
-      "skills":"/api/user/12345/skill",
-      "colleagues":"/api/user/12345/colleague"
+      "skills":"/api/user/12345/skill/",
+      "colleagues":"/api/user/12345/colleague/"
     }
 
 Use the URI endpoints defined in the `resources` object and don't harcode
 the endpoints. If you want to get the user's skills, for instance, don't hardcode 
-the uri as `/api/user/:user_id/skill` but use the URI defined in resources 
+the uri as `/api/user/:user_id/skill/` but use the URI defined in resources 
 instead.
 
 Of course, hopefully we will never have the need to change our URI format, but you 
 never know. It's good to get this right from the start.
 
+Notice that all URIs include a **trailing slash**.
+
 <h2 id="format">Format</h2>
 
-All responses from xTune are returned in `JSON` format.
+All responses from xTune are returned in `JSON` format. 
 
 <h2 id="responses">Responses</h2>
 
@@ -74,15 +76,15 @@ elements in them. These are described below.
 ### Listings
 
 All listing responses through the API will be in the following format. Here's
-an example of what a call to `/api/user?limit=20&amp;offset=0` could look like.
+an example of what a call to `/api/user/?limit=20&amp;offset=0` could look like.
 
     {
-      "limit":20,                             // Current limit, defaults to 20
-      "offset":0,                             // Current offset, defaults to 0
-      "total_count":312,                      // Total number of objects
-      "previous":null,                        // Pagination, previous set
-      "next":"/api//user?offset=20&limit=20", // Pagination, next set
-      "collection": [                         // The user collection
+      "limit":20,                              // Current limit, defaults to 20
+      "offset":0,                              // Current offset, defaults to 0
+      "total_count":312,                       // Total number of objects
+      "previous":null,                         // Pagination, previous set
+      "next":"/api//user/?offset=20&limit=20", // Pagination, next set
+      "collection": [                          // The user collection
         ....
       ]
     }
@@ -93,10 +95,10 @@ Almost all objects will include some common elements. Here's an example of
 a user object:
 
     {
-      "id":12345,              // All objects have an `id`
-      "uri":"/api/user/12345", // Object URI is always included as `uri`
-      "created_at" :           // Timestamps telling when the object was created... 
-      "updated_at" :           // ... and when it was modified.
+      "id":12345,               // All objects have an `id`
+      "uri":"/api/user/12345/", // Object URI is always included as `uri`
+      "created_at" :            // Timestamps telling when the object was created... 
+      "updated_at" :            // ... and when it was modified.
     }
 
 Most objects include a `resources` object which includes
@@ -105,10 +107,10 @@ object include skills and colleagues in the following format
 
     {
       "id":12345,          
-      "uri":"/api/user/12345", 
+      "uri":"/api/user/12345/", 
       "resources":{
-        "skills":"/api/user/12345/skill",
-        "colleagues":"/api/user/12345/colleague"
+        "skills":"/api/user/12345/skill/",
+        "colleagues":"/api/user/12345/colleague/"
       }
     }
 
@@ -117,9 +119,9 @@ object.
 
 ## Fetch URI endpoints and current user
 
-*Endpoint: `/api`*
+*Endpoint: `/api/`*
 
-This is the perfect starting points for using the API. Calling `/api` 
+This is the perfect starting points for using the API. Calling `/api/` 
 will return the current user object and the URI endpoints for our API.
 
 <table class="pure-table ">
@@ -144,10 +146,10 @@ An example of a return response:
     {
       "current_user":{
         "id":12345,
-        "uri":"/api/user/12345",
+        "uri":"/api/user/12345/",
         "resources":{
-          "skills":"/api/user/12345/skill",
-          "colleagues":"/api/user/12345/colleague"
+          "skills":"/api/user/12345/skill/",
+          "colleagues":"/api/user/12345/colleague/"
         },
         "name":"Test User",
         "description":"I'm just a PHP programmer.",
@@ -167,8 +169,8 @@ An example of a return response:
         "updated_at" : 
       },
       "resources":{
-        "users":"/api/user",
-        "skills":"/api/skill",
-        "swarms":"/api/swarm"
+        "users":"/api/user/",
+        "skills":"/api/skill/",
+        "swarms":"/api/swarm/"
       }
     }
