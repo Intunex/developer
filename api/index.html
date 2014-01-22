@@ -87,25 +87,27 @@ You don't have to define the content-type, then you will just get the latest ver
 and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
 endpoints into your application. Instead, ask the initial endpoints through the API.</p>
 
-<p>For exapmle, calling the root of the api at <code>/api</code> will return the current user, and the user object 
+<p>For exapmle, calling the root of the api at <code>/api/</code> will return the current user, and the user object 
 includes the URI for the user. Almost all objects include a <code>resources</code> object,
 which includes URI endpoints for resources belonging to that object.</p>
 
 <p>For instance, the user object includes</p>
 
 <pre><code>"resources":{
-  "skills":"/api/user/12345/skill",
-  "colleagues":"/api/user/12345/colleague"
+  "skills":"/api/user/12345/skill/",
+  "colleagues":"/api/user/12345/colleague/"
 }
 </code></pre>
 
 <p>Use the URI endpoints defined in the <code>resources</code> object and don't harcode
 the endpoints. If you want to get the user's skills, for instance, don't hardcode 
-the uri as <code>/api/user/:user_id/skill</code> but use the URI defined in resources 
+the uri as <code>/api/user/:user_id/skill/</code> but use the URI defined in resources 
 instead.</p>
 
 <p>Of course, hopefully we will never have the need to change our URI format, but you 
 never know. It's good to get this right from the start.</p>
+
+<p>Notice that all URIs include a <strong>trailing slash</strong>.</p>
 
 <h2 id="format">Format</h2>
 
@@ -120,15 +122,15 @@ elements in them. These are described below.</p>
 <h3>Listings</h3>
 
 <p>All listing responses through the API will be in the following format. Here's
-an example of what a call to <code>/api/user?limit=20&amp;amp;offset=0</code> could look like.</p>
+an example of what a call to <code>/api/user/?limit=20&amp;amp;offset=0</code> could look like.</p>
 
 <pre><code>{
-  "limit":20,                             // Current limit, defaults to 20
-  "offset":0,                             // Current offset, defaults to 0
-  "total_count":312,                      // Total number of objects
-  "previous":null,                        // Pagination, previous set
-  "next":"/api//user?offset=20&amp;limit=20", // Pagination, next set
-  "collection": [                         // The user collection
+  "limit":20,                              // Current limit, defaults to 20
+  "offset":0,                              // Current offset, defaults to 0
+  "total_count":312,                       // Total number of objects
+  "previous":null,                         // Pagination, previous set
+  "next":"/api//user/?offset=20&amp;limit=20", // Pagination, next set
+  "collection": [                          // The user collection
     ....
   ]
 }
@@ -140,10 +142,10 @@ an example of what a call to <code>/api/user?limit=20&amp;amp;offset=0</code> co
 a user object:</p>
 
 <pre><code>{
-  "id":12345,              // All objects have an `id`
-  "uri":"/api/user/12345", // Object URI is always included as `uri`
-  "created_at" :           // Timestamps telling when the object was created... 
-  "updated_at" :           // ... and when it was modified.
+  "id":12345,               // All objects have an `id`
+  "uri":"/api/user/12345/", // Object URI is always included as `uri`
+  "created_at" :            // Timestamps telling when the object was created... 
+  "updated_at" :            // ... and when it was modified.
 }
 </code></pre>
 
@@ -153,10 +155,10 @@ object include skills and colleagues in the following format</p>
 
 <pre><code>{
   "id":12345,          
-  "uri":"/api/user/12345", 
+  "uri":"/api/user/12345/", 
   "resources":{
-    "skills":"/api/user/12345/skill",
-    "colleagues":"/api/user/12345/colleague"
+    "skills":"/api/user/12345/skill/",
+    "colleagues":"/api/user/12345/colleague/"
   }
 }
 </code></pre>
@@ -166,9 +168,9 @@ object.</p>
 
 <h2>Fetch URI endpoints and current user</h2>
 
-<p><em>Endpoint: <code>/api</code></em></p>
+<p><em>Endpoint: <code>/api/</code></em></p>
 
-<p>This is the perfect starting points for using the API. Calling <code>/api</code> 
+<p>This is the perfect starting points for using the API. Calling <code>/api/</code> 
 will return the current user object and the URI endpoints for our API.</p>
 
 <table class="pure-table ">
@@ -193,10 +195,10 @@ will return the current user object and the URI endpoints for our API.</p>
 <pre><code>{
   "current_user":{
     "id":12345,
-    "uri":"/api/user/12345",
+    "uri":"/api/user/12345/",
     "resources":{
-      "skills":"/api/user/12345/skill",
-      "colleagues":"/api/user/12345/colleague"
+      "skills":"/api/user/12345/skill/",
+      "colleagues":"/api/user/12345/colleague/"
     },
     "name":"Test User",
     "description":"I'm just a PHP programmer.",
@@ -216,9 +218,9 @@ will return the current user object and the URI endpoints for our API.</p>
     "updated_at" : 
   },
   "resources":{
-    "users":"/api/user",
-    "skills":"/api/skill",
-    "swarms":"/api/swarm"
+    "users":"/api/user/",
+    "skills":"/api/skill/",
+    "swarms":"/api/swarm/"
   }
 }
 </code></pre>
