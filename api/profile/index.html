@@ -60,7 +60,7 @@
 
 <h2 id="list">List all users in xTune</h2>
 
-<p><em>Endpoint: <code>/api/user</code></em></p>
+<p><em>Endpoint: <code>/api/user/</code></em></p>
 
 <table class="pure-table">
     <thead>
@@ -96,18 +96,18 @@
   "offset":0,
   "total_count":214,
   "previous":null,
-  "next":"/api/user?offset=20&amp;limit=20",
+  "next":"/api/user/?offset=20&amp;limit=20",
   "collection": [
     {
       "id":12345,
       "name":"Test User",
-      "uri":"/api/user/12345", 
+      "uri":"/api/user/12345/", 
       "description":"I'm just a PHP programmer.",
       "job_title":"PHP Coder.",
-      "location":"Helsinki, Finland",
-      "department":"Research and Development",
+      "location": ["Helsinki", "Finland"],
+      "department":["Research and Development"],
       "job_rotation":true,
-      "url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
+      "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
       "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
       "email":"testuser@xtune.fi",
       "phone":"412 4214 421421412",
@@ -118,8 +118,7 @@
       "competence":45,  // Competence and interest are only available
       "interest":52,    // if you are searching by skills.
       "resources":{
-        "skills":"/api/user/12345/skill",
-        "colleagues":"/api/user/12345/colleague"
+        "skills":"/api/user/12345/skill/"
       },
       "created_at" :
       "updated_at" : 
@@ -131,7 +130,7 @@
 
 <h2 id="single">Fetch a single user profile</h2>
 
-<p><em>Endpoint: <code>/api/user/:user_id</code></em></p>
+<p><em>Endpoint: <code>/api/user/:user_id/</code></em></p>
 
 <table class="pure-table">
     <thead>
@@ -154,12 +153,12 @@
 
 <pre><code>{
   "id":12345,
-  "uri":"/api/user/12345", 
+  "uri":"/api/user/12345/", 
   "name":"Test User",
   "description":"I'm just a PHP programmer.",
   "job_title":"PHP Coder.",
-  "location":"Helsinki, Finland",
-  "department":"Research and Development, Intunex HQ",
+  "location":["Helsinki, Finland"],
+  "department":["Research and Development", "Intunex HQ"],
   "job_rotation":true,
   "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
   "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
@@ -170,8 +169,7 @@
   "linkedin_url":"http://linkedin.com/",
   "website":"http://intunex.fi",
   "resources":{
-    "skills":"/api/user/12345/skill",
-    "colleagues":"/api/user/12345/colleague"
+    "skills":"/api/user/12345/skill/"
   },
   "created_at" :
   "updated_at" : 
@@ -185,7 +183,7 @@
       &copy; Intunex Oy 2013
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 27 Dec 2013
+          Updated on 22 Jan 2014
         </div>
         </div>
 </div>
