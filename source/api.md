@@ -3,7 +3,7 @@ layout: api
 title: xTune API
 subtitle: xTune API Documentation
 sub_menu: basics
-date: 2014-01-22
+date: 2014-01-23
 ---
 
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
@@ -148,16 +148,15 @@ An example of a return response:
         "id":12345,
         "uri":"/api/user/12345/",
         "resources":{
-          "skills":"/api/user/12345/skill/",
-          "colleagues":"/api/user/12345/colleague/"
+          "skills":"/api/user/12345/skill/"
         },
         "name":"Test User",
         "description":"I'm just a PHP programmer.",
         "job_title":"PHP Coder.",
-        "location":"Helsinki, Finland",
-        "department":"Research and Development, Intunex HQ",
+        "location":["Helsinki", "Finland"],
+        "department":["Research and Development", "Intunex HQ"],
         "job_rotation":true,
-         "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
+        "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
         "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
         "email":"testuser@xtune.fi",
         "phone":"412 4214 421421412",
