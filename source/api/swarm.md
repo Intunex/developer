@@ -10,6 +10,7 @@ date: 2014-01-22
         <li><a href="#all">List all swarms</a></li>
         <li><a href="#single">Get a single swarm</a></li>
         <li><a href="#skills">Get swarm skills</a></li>
+        <li><a href="#checklists">Get checklists</a></li>
     </ul>
 </div>
 
@@ -213,4 +214,72 @@ An example of a return response:
       "created_at":
       "updated_at":
     }
-    
+
+
+<h2 id="checklists">Fetch Swarm Checklists</h2>
+
+*Endpoint: `/api/swarm/:swarm_id/checklist/`*
+
+Fetch checklists in a swarm
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get swarm checklists</td>
+            <td>
+              <ul>
+                <li>Offset: <code>int</code> fetch checklists starting from (optional, default: 0)</li>
+                <li>Limit: <code>int</code> how many checklists to get (optional, default: 20, limit 0-50)</li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+An example of a return response:    
+
+    {
+      "limit":20,
+      "offset":0,
+      "previous":null,
+      "next":"/api/swarm/67521/checklist/?offset=20&limit=20",
+      "total_count":3,
+      "collection": [
+        {
+          "id":8989,
+          "uri":"/api/swarm/67521/checklist/8989/"
+          "title":"My ToDos",
+          "user":{                 // The user who created the Checklist
+            "id":765,
+            "uri":"/api/user/765/"
+          },
+          "assigned_to":{          // This is an optional value. It can be
+            "id":765,              // null or point to an existing user.
+            "uri":"/api/user/765/"          
+          },
+          "created_at":
+          "updated_at":
+        },
+        {
+          "id":8998,
+          "uri":"/api/swarm/67521/checklist/8998/"
+          "title":"Check these out",
+          "user":{                 // The user who created the Checklist
+            "id":168,
+            "uri":"/api/user/168/"
+          },
+          "assigned_to":null,      // This is an optional value. Null if not set.
+          "created_at":
+          "updated_at":
+        },
+        ...
+      ]
+    }
