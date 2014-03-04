@@ -166,6 +166,25 @@ object include skills and colleagues in the following format</p>
 <p>Using these API endpoints it's easy to get extra resources related to the
 object.</p>
 
+<h3>Timestamps</h3>
+
+<p>All objects include timestamps when they were created and last updated. Timestamps
+are always named as <code>created_at</code> and <code>updated_at</code>. Here's an example of a timestamp
+hash:</p>
+
+<pre><code>"created_at": {
+  "date": "2014-01-30 12:37:47",
+  "friendly_time": "33 days ago",
+  "date_local": "2014-1-30"
+},
+</code></pre>
+
+<p>The timestamps hash includes the full <code>date</code>, a <code>friendly_time</code> string and a localized
+<code>date_local</code> string for the date. Notice, that <code>date_local</code> is formatted based on
+site language setting in xTune. For instance, in the above example <code>date_local</code> would
+be <code>30.1.2014</code> if Finnish had been chosen as the current language. <code>friendly_time</code> is 
+also translated based on the language setting in xTune.</p>
+
 <h2>Fetch URI endpoints and current user</h2>
 
 <p><em>Endpoint: <code>/api/</code></em></p>
@@ -231,7 +250,7 @@ will return the current user object and the URI endpoints for our API.</p>
       &copy; Intunex Oy 2013
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 23 Jan 2014
+          Updated on 04 Mar 2014
         </div>
         </div>
 </div>
