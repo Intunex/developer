@@ -1,6 +1,6 @@
 ---
 layout: api
-title: List Skills
+title: Skills
 subtitle: Get skills through the xTune API
 sub_menu: skill
 date: 2014-01-22

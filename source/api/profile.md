@@ -1,7 +1,7 @@
 ---
 layout: api
-title: List users
-subtitle: List users through the xTune API
+title: Users
+subtitle: Get user data through the xTune API
 sub_menu: profile
 date: 2014-01-22
 ---

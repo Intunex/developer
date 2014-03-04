@@ -3,7 +3,7 @@ layout: api
 title: xTune API
 subtitle: xTune API Documentation
 sub_menu: basics
-date: 2014-01-23
+date: 2014-03-04
 ---
 
 <div class="pure-menu pure-menu-open pure-menu-horizontal">

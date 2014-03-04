@@ -1,9 +1,9 @@
 ---
 layout: api
-title: List Swarm
-subtitle: Get swarms through the xTune API
+title: Swarms
+subtitle: Get swarm data through the xTune API
 sub_menu: swarm
-date: 2014-01-22
+date: 2014-03-04
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
