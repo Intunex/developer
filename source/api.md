@@ -117,6 +117,25 @@ object include skills and colleagues in the following format
 Using these API endpoints it's easy to get extra resources related to the
 object.
 
+### Timestamps
+
+All objects include timestamps when they were created and last updated. Timestamps
+are always named as `created_at` and `updated_at`. Here's an example of a timestamp
+hash:
+
+    "created_at": {
+      "date": "2014-01-30 12:37:47",
+      "friendly_time": "33 days ago",
+      "date_local": "2014-1-30"
+    },
+
+The timestamps hash includes the full `date`, a `friendly_time` string and a localized
+`date_local` string for the date. Notice, that `date_local` is formatted based on
+site language setting in xTune. For instance, in the above example `date_local` would
+be `30.1.2014` if Finnish had been chosen as the current language. `friendly_time` is 
+also translated based on the language setting in xTune.
+
+
 ## Fetch URI endpoints and current user
 
 *Endpoint: `/api/`*
