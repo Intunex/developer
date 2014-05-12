@@ -8,7 +8,7 @@ date: 2014-01-22
 ## About xTune Developer Community
 
 Here you can find all info regarding xTune API and xTune Development. Just head on to the 
-[API documentation](/api/) to get started. We're still building things
+[API documentation](/developer/api/) to get started. We're still building things
 and we're just about to get started. Stay tuned.
 
 ## Get in touch
