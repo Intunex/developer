@@ -47,7 +47,7 @@ private key is used to create the signature for each request you make to xTune.
 
 The public key is created based on the private key you created in step 1.
 
-    $ openssl rsa -in key.pem -pubout -out public_key.pem
+    $ openssl rsa -in private_key.pem -pubout -out public_key.pem
 
 This will create a file called ``public_key.pem`` which includes the public that xTune
 needs to verify the signature for each request.
