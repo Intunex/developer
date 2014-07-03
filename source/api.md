@@ -1,9 +1,9 @@
 ---
 layout: api
-title: xTune API
-subtitle: xTune API Documentation
+title: Skillhive API
+subtitle: Skillhive API Documentation
 sub_menu: basics
-date: 2014-03-04
+date: 2014-07-03
 ---
 
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
@@ -16,9 +16,9 @@ date: 2014-03-04
     </ul>
 </div>
 
-<h2 id="about">About xTune API</h2>
+<h2 id="about">About Skillhive API</h2>
 
-xTune API is designed to be flexible and developer friendly. It's designed around
+Skillhive API is designed to be flexible and developer friendly. It's designed around
 RESTful principles.
 
 <h2 id="versioning">Versioning</h2>
@@ -31,14 +31,14 @@ You can define the version using `Content-Type` HTTP header as
 follows:
 
 
-    application/vnd.xtune.YYYYMMDD+json
+    application/vnd.skillhive.YYYYMMDD+json
 
 Where `YYYYMMDD` is the version (based on date, obviously) you requested.
 You don't have to define the content-type, then you will just get the latest version.
 
 <h2 id="browsing">Browsing the API</h2>
 
-xTune API URI endpoints are designed to be as permanent as possible. But things change
+Skillhive API URI endpoints are designed to be as permanent as possible. But things change
 and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
 endpoints into your application. Instead, ask the initial endpoints through the API.
 
@@ -65,7 +65,7 @@ Notice that all URIs include a **trailing slash**.
 
 <h2 id="format">Format</h2>
 
-All responses from xTune are returned in `JSON` format. 
+All responses from Skillhive are returned in `JSON` format. 
 
 <h2 id="responses">Responses</h2>
 
@@ -124,16 +124,19 @@ are always named as `created_at` and `updated_at`. Here's an example of a timest
 hash:
 
     "created_at": {
-      "date": "2014-01-30 12:37:47",
+      "date": "Thu, 30 Jan 2014 16:01:07 +0200",
       "friendly_time": "33 days ago",
       "date_local": "2014-1-30"
     },
 
 The timestamps hash includes the full `date`, a `friendly_time` string and a localized
-`date_local` string for the date. Notice, that `date_local` is formatted based on
-site language setting in xTune. For instance, in the above example `date_local` would
+`date_local` string for the date. `date` is formatted in the 
+[RFC 2822 ](http://www.faqs.org/rfcs/rfc2822.html) format
+which is perfect for JavaScript, for instance.
+Notice, that `date_local` is formatted based on
+site language setting in Skillhive. For instance, in the above example `date_local` would
 be `30.1.2014` if Finnish had been chosen as the current language. `friendly_time` is 
-also translated based on the language setting in xTune.
+also translated based on the language setting in Skillhive.
 
 
 ## Fetch URI endpoints and current user
@@ -175,9 +178,9 @@ An example of a return response:
         "location":["Helsinki", "Finland"],
         "department":["Research and Development", "Intunex HQ"],
         "job_rotation":true,
-        "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
-        "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
-        "email":"testuser@xtune.fi",
+        "profile_url":"https://skillhive.com/pg/profile/testuser@skillhive.com/",
+        "icon_url":"https://skillhive.com/public/user/12345/icon/small/",
+        "email":"testuser@skillhive.com",
         "phone":"412 4214 421421412",
         "mobile":"+358 40 123 4567",
         "twitter":"intunex",
