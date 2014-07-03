@@ -2,9 +2,9 @@
 # via `site.*`. So for example, {{ site.title }} can be used
 # in a template to get the contents of the `title` key.
 
-title: xTune Developer Community
-description: xTune Developer Community.
+title: Skillhive Developer Community
+description: Skillhive Developer Community.
 url: http://localhost:8000
 author:
-  name: Intunex Oy.
+  name: Intunex Oy
   github: http://github.com/intunex/
