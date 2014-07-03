@@ -1,9 +1,9 @@
 ---
 layout: api
 title: Users
-subtitle: Get user data through the xTune API
+subtitle: Get user data through the Skillhive API
 sub_menu: profile
-date: 2014-01-22
+date: 2014-07-03
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -12,7 +12,7 @@ date: 2014-01-22
     </ul>
 </div>
 
-<h2 id="list">List all users in xTune</h2>
+<h2 id="list">List all users in Skillhive</h2>
 
 *Endpoint: `/api/user/`*
 
@@ -61,9 +61,9 @@ An example of a return response:
           "location": ["Helsinki", "Finland"],
           "department":["Research and Development"],
           "job_rotation":true,
-          "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
-          "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
-          "email":"testuser@xtune.fi",
+          "profile_url":"https://skillhive.com/pg/profile/testuser@skillhive.com/",
+          "icon_url":"https://skillhive.com/public/user/12345/icon/small/",
+          "email":"testuser@skillhive.com",
           "phone":"412 4214 421421412",
           "mobile":"+358 40 123 4567",
           "twitter":"intunex",
@@ -115,9 +115,9 @@ An example of a return response:
       "location":["Helsinki, Finland"],
       "department":["Research and Development", "Intunex HQ"],
       "job_rotation":true,
-      "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
-      "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
-      "email":"testuser@xtune.fi",
+      "profile_url":"https://skillhive.com/pg/profile/testuser@skillhive.com/",
+      "icon_url":"https://skillhive.com/public/user/12345/icon/small/",
+      "email":"testuser@skillhive.com",
       "phone":"412 4214 421421412",
       "mobile":"+358 40 123 4567",
       "twitter":"intunex",

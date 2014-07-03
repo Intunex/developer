@@ -1,8 +1,8 @@
 ---
 layout: blog
-title: xTune Development Blog
-subtitle: Latest news on xTune development
-date: 2013-12-27
+title: Skillhive Development Blog
+subtitle: Latest news on Skillhive development
+date: 2014-07-03
 ---
 
 Coming soon...

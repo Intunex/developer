@@ -1,13 +1,13 @@
 ---
 layout: default
-title: xTune Developers
-subtitle: Welcome to xTune Developer Community
-date: 2014-01-22
+title: Skillhive Developers
+subtitle: Welcome to Skillhive Developer Community
+date: 2014-07-03
 ---
 
-## About xTune Developer Community
+## About Skillhive Developer Community
 
-Here you can find all info regarding xTune API and xTune Development. Just head on to the 
+Here you can find all info regarding Skillhive API and Skillhive Development. Just head on to the 
 [API documentation](/developer/api/) to get started. We're still building things
 and we're just about to get started. Stay tuned.
 

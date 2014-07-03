@@ -1,9 +1,9 @@
 ---
 layout: api
 title: Skills
-subtitle: Get skills through the xTune API
+subtitle: Get skills through the Skillhive API
 sub_menu: skill
-date: 2014-01-22
+date: 2014-07-03
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -18,7 +18,7 @@ date: 2014-01-22
 
 *Endpoint: `/api/skill/`*
 
-List all skills in xTune. 
+List all skills in Skillhive. 
 
 <table class="pure-table">
     <thead>
