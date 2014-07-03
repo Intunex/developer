@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>xTune API Authentication &middot; xTune Developer Community</title>
+    <title>Skillhive API Authentication &middot; xTune Developer Community</title>
     <meta charset="utf-8">
     <meta name="author" content="Intunex Oy.">
     
@@ -32,7 +32,7 @@ Authentication ">
     <!-- Static top bar Main Menu -->
 <div id="topbar">
   <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
-    <a class="pure-menu-heading" href="http://intunex.github.io/developer">xTune Developers</a>
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
 
     <ul>
       <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API</a></li>
@@ -58,7 +58,7 @@ Authentication ">
 </div>
   <div class="pure-u-1" id="main">
     <div class="header">
-  <h1>xTune API Authentication</h1>
+  <h1>Skillhive API Authentication</h1>
       <h2>Authentication</h2>
   </div>
 
@@ -80,15 +80,15 @@ using RSA keys. In a nutshell, here's what you need to do:</p>
 <ol>
 <li>Generate a private RSA key</li>
 <li>Generate a public RSA key based on the private key</li>
-<li>Login to xTune and setup the api, upload the contents of the <em>public</em> key to xTune</li>
-<li>Use the private key to sign requests to xTune API</li>
+<li>Login to Skillhive and setup the api, upload the contents of the <em>public</em> key to Skillhive</li>
+<li>Use the private key to sign requests to Skillhive API</li>
 </ol>
 
 <p>Here are the details.</p>
 
 <h2 id="keys">Generate the RSA Keys</h2>
 
-<p>The keys cannot be created in xTune and you need to create them yourself. It's pretty 
+<p>The keys cannot be created in Skillhive and you need to create them yourself. It's pretty 
 straightforward at least in *NIX based systems.</p>
 
 <h3>Step 1. Generate a private key</h3>
@@ -99,9 +99,9 @@ straightforward at least in *NIX based systems.</p>
 </code></pre>
 
 <p>This will create a file called <code>private_key.pem</code> which includes the private key. The
-private key is used to create the signature for each request you make to xTune.</p>
+private key is used to create the signature for each request you make to Skillhive.</p>
 
-<p><strong>NOTICE!</strong> Keep the private key to yourself and never ever upload it to xTune!</p>
+<p><strong>NOTICE!</strong> Keep the private key to yourself and never ever upload it to Skillhive!</p>
 
 <h3>Step 2. Generate a Public Key</h3>
 
@@ -110,23 +110,23 @@ private key is used to create the signature for each request you make to xTune.<
 <pre><code>$ openssl rsa -in private_key.pem -pubout -out public_key.pem
 </code></pre>
 
-<p>This will create a file called <code>public_key.pem</code> which includes the public that xTune
+<p>This will create a file called <code>public_key.pem</code> which includes the public that Skillhive
 needs to verify the signature for each request.</p>
 
 <h2 id="request">Forming a Request</h2>
 
-<p>Some additional HTTP headers are required for each request you make to xTune API. The headers are</p>
+<p>Some additional HTTP headers are required for each request you make to Skillhive API. The headers are</p>
 
 <ul>
-<li><code>Api-Id</code> This is the ID you get when you setup your api connection in xTune. xTune uses to this to
+<li><code>Api-Id</code> This is the ID you get when you setup your api connection in Skillhive. Skillhive uses to this to
 check where the connection is coming from.</li>
-<li><code>Api-User</code> The email address of the user who is connecting to xTune (the "loggedin user"). Remember,
-that different users have different access rights in xTune and the data they are able to view through
+<li><code>Api-User</code> The email address of the user who is connecting to Skillhive (the "loggedin user"). Remember,
+that different users have different access rights in Skillhive and the data they are able to view through
 the api can be different for different users.</li>
 <li><code>Api-Signature</code> The signature created using the private key.</li>
 </ul>
 
-<p>For each request xTune will check that</p>
+<p>For each request Skillhive will check that</p>
 
 <ol>
 <li>Api keys matching <code>Api-Id</code> have been setup and are enabled,</li>
@@ -134,7 +134,7 @@ the api can be different for different users.</li>
 <li>A user account is found with the email address defined in <code>Api-User</code>.</li>
 </ol>
 
-<p>If any of these steps fails, xTune will return a response with error code <code>403</code>.</p>
+<p>If any of these steps fails, Skillhive will return a response with error code <code>403</code>.</p>
 
 <h3>Creating the Signature</h3>
 
@@ -143,21 +143,21 @@ requested url.</p>
 
 <p>The signature is made from a string like this:</p>
 
-<pre><code>{"url":"https://demo.xtune.fi/api/","content":"","api_id":"xasx7as87xash7978","user":"demouser@xtune.fi"}
+<pre><code>{"url":"https://demo.skillhive.com/api/","content":"","api_id":"xasx7as87xash7978","user":"demouser@skillhive.com"}
 </code></pre>
 
 <p><strong>NOTICE!</strong> The header <code>Api-Signature</code> field contains the signature in <code>base64</code> encoded format.</p>
 
 <h2 id="examples">Examples</h2>
 
-<p>Here is an example how to create the signature PHP. Let's assume we're trying to list all users in xTune
+<p>Here is an example how to create the signature PHP. Let's assume we're trying to list all users in Skillhive
 throught the api.</p>
 
 <pre><code>// The data that we need for signing the request
-$url     = "https://demo.xtune.fi/api/user/"; // List all users
+$url     = "https://demo.skillhive.com/api/user/"; // List all users
 $content = "";                                // Empty for GET requests
-$api_id  = "c7ds89c7shc7ds98h98";             // A random Api-Id recieved from xTune
-$user    = "testuser@demoxtune.fi";           // Email of "loggedin" user
+$api_id  = "c7ds89c7shc7ds98h98";             // A random Api-Id recieved from Skillhive
+$user    = "testuser@demoskillhive.com";           // Email of "loggedin" user
 
 $data = array(
     'url'     =&gt; $url,
@@ -189,7 +189,7 @@ $signature = base64_encode($signature);
       &copy; Intunex Oy 2014
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 12 May 2014
+          Updated on 03 Jul 2014
         </div>
         </div>
 </div>

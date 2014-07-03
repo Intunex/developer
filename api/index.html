@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>xTune API &middot; xTune Developer Community</title>
+    <title>Skillhive API &middot; xTune Developer Community</title>
     <meta charset="utf-8">
     <meta name="author" content="Intunex Oy.">
     
@@ -16,9 +16,9 @@
     
 
 
-About xTune API
+About Skillhive API
 
-xTune API is designed to be f">    
+Skillhive API is designed">    
         
         
     <link rel="shortcut icon" href="http://intunex.github.io/developer/img/favicon.ico" />
@@ -33,7 +33,7 @@ xTune API is designed to be f">
     <!-- Static top bar Main Menu -->
 <div id="topbar">
   <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
-    <a class="pure-menu-heading" href="http://intunex.github.io/developer">xTune Developers</a>
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
 
     <ul>
       <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API</a></li>
@@ -59,8 +59,8 @@ xTune API is designed to be f">
 </div>
   <div class="pure-u-1" id="main">
     <div class="header">
-  <h1>xTune API</h1>
-      <h2>xTune API Documentation</h2>
+  <h1>Skillhive API</h1>
+      <h2>Skillhive API Documentation</h2>
   </div>
 
     <div class="content">
@@ -74,9 +74,9 @@ xTune API is designed to be f">
     </ul>
 </div>
 
-<h2 id="about">About xTune API</h2>
+<h2 id="about">About Skillhive API</h2>
 
-<p>xTune API is designed to be flexible and developer friendly. It's designed around
+<p>Skillhive API is designed to be flexible and developer friendly. It's designed around
 RESTful principles.</p>
 
 <h2 id="versioning">Versioning</h2>
@@ -88,7 +88,7 @@ version of the API you are accessing and get the contents in the format you want
 <p>You can define the version using <code>Content-Type</code> HTTP header as
 follows:</p>
 
-<pre><code>application/vnd.xtune.YYYYMMDD+json
+<pre><code>application/vnd.skillhive.YYYYMMDD+json
 </code></pre>
 
 <p>Where <code>YYYYMMDD</code> is the version (based on date, obviously) you requested.
@@ -96,7 +96,7 @@ You don't have to define the content-type, then you will just get the latest ver
 
 <h2 id="browsing">Browsing the API</h2>
 
-<p>xTune API URI endpoints are designed to be as permanent as possible. But things change
+<p>Skillhive API URI endpoints are designed to be as permanent as possible. But things change
 and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
 endpoints into your application. Instead, ask the initial endpoints through the API.</p>
 
@@ -124,7 +124,7 @@ never know. It's good to get this right from the start.</p>
 
 <h2 id="format">Format</h2>
 
-<p>All responses from xTune are returned in <code>JSON</code> format.</p>
+<p>All responses from Skillhive are returned in <code>JSON</code> format.</p>
 
 <h2 id="responses">Responses</h2>
 
@@ -186,17 +186,20 @@ are always named as <code>created_at</code> and <code>updated_at</code>. Here's 
 hash:</p>
 
 <pre><code>"created_at": {
-  "date": "2014-01-30 12:37:47",
+  "date": "Thu, 30 Jan 2014 16:01:07 +0200",
   "friendly_time": "33 days ago",
   "date_local": "2014-1-30"
 },
 </code></pre>
 
 <p>The timestamps hash includes the full <code>date</code>, a <code>friendly_time</code> string and a localized
-<code>date_local</code> string for the date. Notice, that <code>date_local</code> is formatted based on
-site language setting in xTune. For instance, in the above example <code>date_local</code> would
+<code>date_local</code> string for the date. <code>date</code> is formatted in the 
+<a href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822 </a> format
+which is perfect for JavaScript, for instance.
+Notice, that <code>date_local</code> is formatted based on
+site language setting in Skillhive. For instance, in the above example <code>date_local</code> would
 be <code>30.1.2014</code> if Finnish had been chosen as the current language. <code>friendly_time</code> is 
-also translated based on the language setting in xTune.</p>
+also translated based on the language setting in Skillhive.</p>
 
 <h2>Fetch URI endpoints and current user</h2>
 
@@ -237,9 +240,9 @@ will return the current user object and the URI endpoints for our API.</p>
     "location":["Helsinki", "Finland"],
     "department":["Research and Development", "Intunex HQ"],
     "job_rotation":true,
-    "profile_url":"https://xtune.fi/pg/profile/testuser@xtune.fi/",
-    "icon_url":"https://xtune.fi/public/user/12345/icon/small/",
-    "email":"testuser@xtune.fi",
+    "profile_url":"https://skillhive.com/pg/profile/testuser@skillhive.com/",
+    "icon_url":"https://skillhive.com/public/user/12345/icon/small/",
+    "email":"testuser@skillhive.com",
     "phone":"412 4214 421421412",
     "mobile":"+358 40 123 4567",
     "twitter":"intunex",
@@ -263,7 +266,7 @@ will return the current user object and the URI endpoints for our API.</p>
       &copy; Intunex Oy 2014
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 04 Mar 2014
+          Updated on 03 Jul 2014
         </div>
         </div>
 </div>
