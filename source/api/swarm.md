@@ -1,9 +1,9 @@
 ---
 layout: api
 title: Swarms
-subtitle: Get swarm data through the xTune API
+subtitle: Get swarm data through the Skillhive API
 sub_menu: swarm
-date: 2014-03-04
+date: 2014-07-03
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -263,13 +263,13 @@ An example of a return response:
             "id":765,
             "uri":"/api/user/765/",
             "name":"User Name",
-            "icon_url":"https://company.xtune.fi/user/765/icon"
+            "icon_url":"https://company.skillhive.com/user/765/icon"
           },
           "assigned_to":{          // This is an optional value. It can be
             "id":765,              // null or point to an existing user.
             "uri":"/api/user/765/",
             "name":"User Name",
-            "icon_url":"https://company.xtune.fi/user/765/icon"
+            "icon_url":"https://company.skillhive.com/user/765/icon"
           },
           "resources": {
             "items": "/api/swarm/67521/checklist/8989/item/"
@@ -285,7 +285,7 @@ An example of a return response:
             "id":168,
             "uri":"/api/user/168/",
             "name":"User Name",
-            "icon_url":"https://company.xtune.fi/user/168/icon"
+            "icon_url":"https://company.skillhive.com/user/168/icon"
           },
           "assigned_to":null,      // This is an optional value. Null if not set.
           "resources": {
@@ -337,13 +337,13 @@ If the checklist is succesfully created, the created checklist will be returned.
         "id":765,
         "uri":"/api/user/765/",
         "name":"User Name",
-        "icon_url":"https://company.xtune.fi/user/765/icon"
+        "icon_url":"https://company.skillhive.com/user/765/icon"
       },
       "assigned_to":{          // This is an optional value. It can be
         "id":765,              // null or point to an existing user.
         "uri":"/api/user/765/",
         "name":"User Name",
-        "icon_url":"https://company.xtune.fi/user/765/icon"
+        "icon_url":"https://company.skillhive.com/user/765/icon"
       },
       "resources": {
         "items": "/api/swarm/67521/checklist/8989/item/"
@@ -387,13 +387,13 @@ Return the checklist, for instance:
         "id":765,
         "uri":"/api/user/765/",
         "name":"User Name",
-        "icon_url":"https://company.xtune.fi/user/765/icon"
+        "icon_url":"https://company.skillhive.com/user/765/icon"
       },
       "assigned_to":{          // This is an optional value. It can be
         "id":765,              // null or point to an existing user.
         "uri":"/api/user/765/",
         "name":"User Name",
-        "icon_url":"https://company.xtune.fi/user/765/icon"
+        "icon_url":"https://company.skillhive.com/user/765/icon"
       },
       "resources": {
         "items": "/api/swarm/67521/checklist/8989/item/"
@@ -441,13 +441,13 @@ If the checklist is succesfully updated, the updated checklist will be returned.
         "id":765,
         "uri":"/api/user/765/",
         "name":"User Name",
-        "icon_url":"https://company.xtune.fi/user/765/icon"
+        "icon_url":"https://company.skillhive.com/user/765/icon"
       },
       "assigned_to":{          // This is an optional value. It can be
         "id":765,              // null or point to an existing user.
         "uri":"/api/user/765/",
         "name":"User Name",
-        "icon_url":"https://company.xtune.fi/user/765/icon"
+        "icon_url":"https://company.skillhive.com/user/765/icon"
       },
       "resources": {
         "items": "/api/swarm/67521/checklist/8989/item/"
@@ -529,7 +529,7 @@ An example of a return response:
             "id": "123",
             "name": "Jaakko Naakka",
             "uri": "/api/user/123",
-            "icon_url": "https://company.xtune.fi//user/123/icon/"
+            "icon_url": "https://company.skillhive.com//user/123/icon/"
           },
           "checklist": {   // The checklist this item belongs to
             "id": "24",
@@ -539,20 +539,20 @@ An example of a return response:
             "id": "123",
             "name": "Jaakko Naakka",
             "uri": "/api/user/123",
-            "icon_url": "https://company.xtune.fi//user/123/icon/"
+            "icon_url": "https://company.skillhive.com//user/123/icon/"
           },
           "completed_at": {   // Either null or timestamp when the item was completed
-            "date": "2014-03-03 10:45:29",
+            "date": "Thu, 3 Mar 2014 10:45:29 +0200",
             "friendly_time": "yesterday",
             "date_local": "2014-3-3"
           },
           "created_at": {
-            "date": "2014-01-30 12:37:47",
+            "date": "Wed, 30 Jan 2014 12:37:47 +0200",
             "friendly_time": "33 days ago",
             "date_local": "2014-1-30"
           },
           "updated_at": {
-            "date": "2014-03-03 10:45:29",
+            "date": "Thu, 3 Mar 2014 10:45:29 +0200",
             "friendly_time": "yesterday",
             "date_local": "2014-3-3"
           },
@@ -598,7 +598,7 @@ If the checklist item is succesfully created, the created item will be returned.
         "id": "123",
         "name": "Jaakko Naakka",
         "uri": "/api/user/123",
-        "icon_url": "https://company.xtune.fi//user/123/icon/"
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
       },
       "checklist": {   // The checklist this item belongs to
         "id": "24",
@@ -607,12 +607,12 @@ If the checklist item is succesfully created, the created item will be returned.
       "completed_by":null,
       "completed_at":null,
       "created_at": {
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
       },
       "updated_at": {
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
     }
@@ -652,7 +652,7 @@ Get a single checklist item, for instance:
         "id": "123",
         "name": "Jaakko Naakka",
         "uri": "/api/user/123",
-        "icon_url": "https://company.xtune.fi//user/123/icon/"
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
       },
       "checklist": {   // The checklist this item belongs to
         "id": "24",
@@ -662,20 +662,20 @@ Get a single checklist item, for instance:
         "id": "123",
         "name": "Jaakko Naakka",
         "uri": "/api/user/123",
-        "icon_url": "https://company.xtune.fi//user/123/icon/"
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
       },
       "completed_at": {   // Current server time
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
       },
       "created_at": {
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
       },
       "updated_at": {
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
     }
@@ -724,7 +724,7 @@ the item completed is always the currently loggedin user. An example of the retu
         "id": "123",
         "name": "Jaakko Naakka",
         "uri": "/api/user/123",
-        "icon_url": "https://company.xtune.fi//user/123/icon/"
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
       },
       "checklist": {   // The checklist this item belongs to
         "id": "24",
@@ -734,20 +734,20 @@ the item completed is always the currently loggedin user. An example of the retu
         "id": "123",
         "name": "Jaakko Naakka",
         "uri": "/api/user/123",
-        "icon_url": "https://company.xtune.fi//user/123/icon/"
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
       },
       "completed_at": {   // Current server time
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
       },
       "created_at": {
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
       },
       "updated_at": {
-        "date": "2014-01-30 12:37:47",
+        "date": "Fri, 30 Jan 2014 12:37:47 +0200",
         "friendly_time": "just now",
         "date_local": "2014-1-30"
     }
