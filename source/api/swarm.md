@@ -11,6 +11,7 @@ date: 2014-07-03
         <li><a href="#single">Get a single swarm</a></li>
         <li><a href="#skills">Swarm skills</a></li>
         <li><a href="#checklists">Checklists</a></li>
+        <li><a href="#stats">Statistics</a></li>
     </ul>
 </div>
 
@@ -778,3 +779,61 @@ Delete a checklist item identified by `item_id`.
 </table>
 
 If the item is succesfully deleted, the server will return a HTTP Response with status code 200.
+
+
+<h2 id="stats">Swarm Statistics</h2>
+
+Endpoints to get swarm statistics.
+
+### Swarm Skill Statistics
+
+*Endpoint: `/api/swarm/:swarm_id/statistics/skills/`*
+
+Get statistics about swarm members' skills in the skills that are tagged in the swarm.
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get skill statistics</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+An example of a return response:    
+
+    {
+      "total_count":3, // Total number of skills in this swarm
+      "collection": [
+        {
+          "name":"Scrum",
+          "uri":"/api/skill/?skill=Scrum",
+          "competence_avg": 65,
+          "interest_avg": 78,
+          "expert_count": 8, // How many users in this swarm has this skill
+          "users":{
+            // A list of swarm members with this skill
+          }        
+        },
+        {
+          "name":"Node.js",
+          "uri":"/api/skill/?skill=node.js",
+          "competence_avg": 45,
+          "interest_avg": 89,
+          "expert_count": 4, // How many users in this swarm has this skill
+          "users":{
+            // A list of swarm members with this skill
+          }        
+        },
+        ...
+      ]
+    }
+
