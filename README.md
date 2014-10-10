@@ -1,4 +1,4 @@
 
-# xTune Developer Community
+# Skillhive Developer Community
 
-xTune Developer community and API documentation.
+Skillhive Developer community and API documentation.
