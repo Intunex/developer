@@ -819,9 +819,24 @@ An example of a return response:
           "competence_avg": 65,
           "interest_avg": 78,
           "expert_count": 8, // How many users in this swarm has this skill
-          "users":{
-            // A list of swarm members with this skill
-          }        
+          "users":[
+            {
+              "id":765,             
+              "uri":"/api/user/765/",
+              "name":"User Name",
+              "icon_url":"https://company.skillhive.com/user/765/icon",
+              "competence": 97,
+              "interest": 78
+            },
+            {
+              "id":768,             
+              "uri":"/api/user/768/",
+              "name":"Jane Doe",
+              "icon_url":"https://company.skillhive.com/user/768/icon",
+              "competence": 88,
+              "interest": 95
+            }
+          ]
         },
         {
           "name":"Node.js",
@@ -830,7 +845,22 @@ An example of a return response:
           "interest_avg": 89,
           "expert_count": 4, // How many users in this swarm has this skill
           "users":{
-            // A list of swarm members with this skill
+            {
+              "id":768,             
+              "uri":"/api/user/768/",
+              "name":"Jane Doe",
+              "icon_url":"https://company.skillhive.com/user/768/icon",
+              "competence": 72,
+              "interest": 81
+            },
+            {
+              "id":765,             
+              "uri":"/api/user/765/",
+              "name":"User Name",
+              "icon_url":"https://company.skillhive.com/user/765/icon",
+              "competence": 56,
+              "interest": 43
+            }
           }        
         },
         ...
