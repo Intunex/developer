@@ -785,9 +785,50 @@ If the item is succesfully deleted, the server will return a HTTP Response with 
 
 Endpoints to get swarm statistics.
 
+### Swarm Statistics
+
+Get a list of swarms ready for displaying swarms in statistics. This has a few minor differences
+compared to the standard swarm list. This list includes `category` and `completeness` attributes
+for each swarm. Category is based on the business unit of the user who created the swarm. 
+An example of a return response:
+
+    {
+      "limit":20,
+      "offset":0,
+      "previous":null,
+      "next":"/api/swarm/?offset=20&limit=20",
+      "total_count":124, // Total number of swarms
+      "collection": [
+        {
+          "id":67521,
+          "uri":"/api/swarm/67521/",
+          "title":"Testing Project",
+          "type":"project",
+          "category":"HR Development",
+          "description":"This is a testing project.",
+          "completeness":7,
+          "is_official":false,
+          "is_draft":false,
+          "location":"Helsinki, Finland",
+          "resources":{
+            "users":"/api/swarm/67521/user/",
+            "skills":"/api/swarm/67521/skill/"
+          },
+          "start_at"::
+          "end_at":
+          "duration":6,
+          "created_at" :
+          "updated_at" :
+        },
+        ...
+      ]
+    }
+
+
+
 ### Swarm Skill Statistics
 
-*Endpoint: `/api/swarm/:swarm_id/statistics/skills/`*
+*Endpoint: `/api/swarm/:swarm_id/statistics/skills/user`*
 
 Get statistics about swarm members' skills in the skills that are tagged in the swarm.
 
