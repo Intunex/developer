@@ -791,8 +791,8 @@ Get a list of swarms ready for displaying swarms in statistics. This has a few m
 compared to the standard swarm list. This list includes `category` and `completeness` attributes
 for each swarm. 
 
-Category is based on the business unit of the user who created the swarm. A list of all available
-categories is listed as well.
+Swarms category is based on the business unit of the user who created the swarm. A list of all available
+categories is listed. Also, a list of all available swarm types is included in the result.
 
 An example of a return response:
 
@@ -806,6 +806,20 @@ An example of a return response:
         "Research and Development",
         "Intunex HQ",
         "Sales"
+      ],
+      "types": [
+        "idea",
+        "problem",
+        "project",
+        "message",
+        "objective",
+        "expert",
+        "announcement",
+        "survey",
+        "role",
+        "certificate",
+        "course",
+        "onboarding",
       ],
       "collection": [
         {
