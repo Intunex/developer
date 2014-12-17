@@ -789,7 +789,11 @@ Endpoints to get swarm statistics.
 
 Get a list of swarms ready for displaying swarms in statistics. This has a few minor differences
 compared to the standard swarm list. This list includes `category` and `completeness` attributes
-for each swarm. Category is based on the business unit of the user who created the swarm. 
+for each swarm. 
+
+Category is based on the business unit of the user who created the swarm. A list of all available
+categories is listed as well.
+
 An example of a return response:
 
     {
@@ -798,6 +802,11 @@ An example of a return response:
       "previous":null,
       "next":"/api/swarm/?offset=20&limit=20",
       "total_count":124, // Total number of swarms
+      "categories": [
+        "Research and Development",
+        "Intunex HQ",
+        "Sales"
+      ],
       "collection": [
         {
           "id":67521,
