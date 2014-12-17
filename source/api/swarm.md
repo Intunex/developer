@@ -833,6 +833,7 @@ An example of a return response:
           "is_official":false,
           "is_draft":false,
           "location":"Helsinki, Finland",
+          "expert_count": 14,
           "resources":{
             "users":"/api/swarm/67521/user/",
             "skills":"/api/swarm/67521/skill/"
