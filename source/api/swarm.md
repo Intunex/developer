@@ -834,6 +834,7 @@ An example of a return response:
           "is_draft":false,
           "location":"Helsinki, Finland",
           "expert_count": 14,
+          "skill_names": ["PHP", "Social Media", "React.js"]
           "resources":{
             "users":"/api/swarm/67521/user/",
             "skills":"/api/swarm/67521/skill/"
