@@ -3,7 +3,7 @@ layout: api
 title: Swarms
 subtitle: Get swarm data through the Skillhive API
 sub_menu: swarm
-date: 2014-07-03
+date: 2015-01-22
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
