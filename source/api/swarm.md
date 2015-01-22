@@ -9,6 +9,7 @@ date: 2014-07-03
     <ul>
         <li><a href="#all">List swarms</a></li>
         <li><a href="#single">Get a single swarm</a></li>
+        <li><a href="#create">Create a swarm</a></li>
         <li><a href="#skills">Swarm skills</a></li>
         <li><a href="#checklists">Checklists</a></li>
         <li><a href="#stats">Statistics</a></li>
@@ -121,6 +122,151 @@ An example of a return response:
       "created_at" :
       "updated_at" :
     }
+
+
+<h2 id="create">Create a Swarm</h2>
+
+*Endpoint: `/api/swarm/`*
+
+Create a new swarm.
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create a new swarm</td>
+        </tr>
+    </tbody>
+</table>
+
+Possible post parameters:
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Values</th>
+            <th>Optional</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>type</td>
+            <td>string</td>
+            <td>idea</td>
+            <td>idea, problem, project, message, survey, announcement, objective, 
+            onboarding, course, certificate, role, expert</td>
+            <td>true</td>
+        </tr><tr>
+            <td>title</td>
+            <td>string</td>
+            <td></td>
+            <td>Max length 255 characters</td>
+            <td>false</td>
+        </tr><tr>
+            <td>description</td>
+            <td>string</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>status</td>
+            <td>string</td>
+            <td>in_progress</td>
+            <td>in_progress, completed</td>
+            <td>true</td>
+        </tr><tr>
+            <td>is_draft</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>is_official</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>access</td>
+            <td>string</td>
+            <td>public</td>
+            <td>public, members</td>
+            <td>true</td>
+        </tr><tr>
+            <td>start_at</td>
+            <td>string</td>
+            <td><code>now()</code></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>end_at</td>
+            <td>string</td>
+            <td><code>now()</code></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>location</td>
+            <td>string</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>show_map</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>duration</td>
+            <td>string</td>
+            <td></td>
+            <td>Max length 32 characters</td>
+            <td>true</td>
+        </tr><tr>
+            <td>price</td>
+            <td>string</td>
+            <td></td>
+            <td>Max length 32 characters</td>
+            <td>true</td>
+        </tr><tr>
+            <td>participants_min</td>
+            <td>integer</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>participants_max</td>
+            <td>integer</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>skills</td>
+            <td>string</td>
+            <td></td>
+            <td>A comma separated list of skill names: JavaScript, C++, Node.js</td>
+            <td>true</td>
+        </tr>
+    </tbody>
+</table>
+
+Notice that almost all values have some sensible defaults and actually the swarm title is the only
+required parameter you need to send. Notice also, that not all of the swarm attributes are actually 
+used in all swarm types. For instance, the number of allowed participants defined by `participants_min` 
+and `participants_max` parameters are only used for course swarms. The values are saved but they 
+won't be shown to users in the Skillhive UI.
+
+If the swarm is created succesfully, the return response will be similar to the 
+[single swarm listing](#single) you get through the api.
 
 
 <h2 id="skills">Fetch Skills in Swarm</h2>
