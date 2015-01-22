@@ -10,18 +10,14 @@
     
         List swarms
         Get a single swarm
+        Create a swarm
         Swarm skills
         Checklists
+        Statistics
     
 
 
-List All Swarms
-
-Endpoint: /api/swarm/
-
-
-    
-    ">    
+List All">    
         
         
     <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
@@ -71,8 +67,10 @@ Endpoint: /api/swarm/
     <ul>
         <li><a href="#all">List swarms</a></li>
         <li><a href="#single">Get a single swarm</a></li>
+        <li><a href="#create">Create a swarm</a></li>
         <li><a href="#skills">Swarm skills</a></li>
         <li><a href="#checklists">Checklists</a></li>
+        <li><a href="#stats">Statistics</a></li>
     </ul>
 </div>
 
@@ -182,6 +180,150 @@ Endpoint: /api/swarm/
   "updated_at" :
 }
 </code></pre>
+
+<h2 id="create">Create a Swarm</h2>
+
+<p><em>Endpoint: <code>/api/swarm/</code></em></p>
+
+<p>Create a new swarm.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create a new swarm</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Possible post parameters:</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Values</th>
+            <th>Optional</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>type</td>
+            <td>string</td>
+            <td>idea</td>
+            <td>idea, problem, project, message, survey, announcement, objective, 
+            onboarding, course, certificate, role, expert</td>
+            <td>true</td>
+        </tr><tr>
+            <td>title</td>
+            <td>string</td>
+            <td></td>
+            <td>Max length 255 characters</td>
+            <td>false</td>
+        </tr><tr>
+            <td>description</td>
+            <td>string</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>status</td>
+            <td>string</td>
+            <td>in_progress</td>
+            <td>in_progress, completed</td>
+            <td>true</td>
+        </tr><tr>
+            <td>is_draft</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>is_official</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>access</td>
+            <td>string</td>
+            <td>public</td>
+            <td>public, members</td>
+            <td>true</td>
+        </tr><tr>
+            <td>start_at</td>
+            <td>string</td>
+            <td><code>now()</code></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>end_at</td>
+            <td>string</td>
+            <td><code>now()</code></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>location</td>
+            <td>string</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>show_map</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>duration</td>
+            <td>string</td>
+            <td></td>
+            <td>Max length 32 characters</td>
+            <td>true</td>
+        </tr><tr>
+            <td>price</td>
+            <td>string</td>
+            <td></td>
+            <td>Max length 32 characters</td>
+            <td>true</td>
+        </tr><tr>
+            <td>participants_min</td>
+            <td>integer</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>participants_max</td>
+            <td>integer</td>
+            <td></td>
+            <td></td>
+            <td>true</td>
+        </tr><tr>
+            <td>skills</td>
+            <td>string</td>
+            <td></td>
+            <td>A comma separated list of skill names: JavaScript, C++, Node.js</td>
+            <td>true</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Notice that almost all values have some sensible defaults and actually the swarm title is the only
+required parameter you need to send. Notice also, that not all of the swarm attributes are actually 
+used in all swarm types. For instance, the number of allowed participants defined by <code>participants_min</code> 
+and <code>participants_max</code> parameters are only used for course swarms. The values are saved but they 
+won't be shown to users in the Skillhive UI.</p>
+
+<p>If the swarm is created succesfully, the return response will be similar to the 
+<a href="#single">single swarm listing</a> you get through the api.</p>
 
 <h2 id="skills">Fetch Skills in Swarm</h2>
 
@@ -842,15 +984,102 @@ the item completed is always the currently loggedin user. An example of the retu
 </table>
 
 <p>If the item is succesfully deleted, the server will return a HTTP Response with status code 200.</p>
+
+<h2 id="stats">Swarm Statistics</h2>
+
+<p>Endpoints to get swarm statistics.</p>
+
+<h3>Swarm Skill Statistics</h3>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/statistics/skills/</code></em></p>
+
+<p>Get statistics about swarm members' skills in the skills that are tagged in the swarm.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get skill statistics</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>{
+  "total_count":3, // Total number of skills in this swarm
+  "collection": [
+    {
+      "name":"Scrum",
+      "uri":"/api/skill/?skill=Scrum",
+      "competence_avg": 65,
+      "interest_avg": 78,
+      "expert_count": 8, // How many users in this swarm has this skill
+      "users":[
+        {
+          "id":765,             
+          "uri":"/api/user/765/",
+          "name":"User Name",
+          "icon_url":"https://company.skillhive.com/user/765/icon",
+          "competence": 97,
+          "interest": 78
+        },
+        {
+          "id":768,             
+          "uri":"/api/user/768/",
+          "name":"Jane Doe",
+          "icon_url":"https://company.skillhive.com/user/768/icon",
+          "competence": 88,
+          "interest": 95
+        }
+      ]
+    },
+    {
+      "name":"Node.js",
+      "uri":"/api/skill/?skill=node.js",
+      "competence_avg": 45,
+      "interest_avg": 89,
+      "expert_count": 4, // How many users in this swarm has this skill
+      "users":{
+        {
+          "id":768,             
+          "uri":"/api/user/768/",
+          "name":"Jane Doe",
+          "icon_url":"https://company.skillhive.com/user/768/icon",
+          "competence": 72,
+          "interest": 81
+        },
+        {
+          "id":765,             
+          "uri":"/api/user/765/",
+          "name":"User Name",
+          "icon_url":"https://company.skillhive.com/user/765/icon",
+          "competence": 56,
+          "interest": 43
+        }
+      }        
+    },
+    ...
+  ]
+}
+</code></pre>
     </div>
   </div> <!-- end div main -->
 </div><!-- end div layout -->
     <div class="pure-g-r side-menu" id="footer">
     <div class="pure-u-1-2">
-      &copy; Intunex Oy 2014
+      &copy; Intunex Oy 2015
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 03 Jul 2014
+          Updated on 22 Jan 2015
         </div>
         </div>
 </div>
