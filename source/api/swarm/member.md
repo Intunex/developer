@@ -35,8 +35,8 @@ Fetch all members in a swarm.
             <td>Get swarm members</td>
             <td>
               <ul>
-                <li>Offset: <code>int</code> fetch checklists starting from (optional, default: 0)</li>
-                <li>Limit: <code>int</code> how many checklists to get (optional, default: 20, limit 0-50)</li>
+                <li>Offset: <code>int</code> fetch members starting from (optional, default: 0)</li>
+                <li>Limit: <code>int</code> how many members to get (optional, default: 20, limit 0-50)</li>
               </ul>            
             </td>
         </tr>
