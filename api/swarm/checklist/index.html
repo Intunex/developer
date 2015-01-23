@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Swarm Checklists &middot; Skillhive Developer Community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Intunex Oy">
+    
+                  
+          <meta name="description" content="
+    
+        List checklists
+        Create a checklist
+        Get a single checklist
+        Update a checklist
+        Delete a checklist
+        ">    
+        
+        
+    <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+  <link href="http://intunex.github.io/developer/css/main.css" rel="stylesheet">  
+      </head>
+  <body>
+    <!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
+
+    <ul>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API</a></li>
+      <li ><a href="http://intunex.github.io/developer/blog/">Blog</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="pure-g-r side-menu" id="layout">
+  <!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li ><a href="http://intunex.github.io/developer/api/">Basics</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/authentication/">Authentication</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/profile/">User Profiles</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/skill/">Skills</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/swarm/">Swarms</a></li>
+          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/swarm/checklist/">Swarm Checklists</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/swarm/member/">Swarm Members</a></li>
+      </ul>
+  </div>
+</div>
+  <div class="pure-u-1" id="main">
+    <div class="header">
+  <h1>Swarm Checklists</h1>
+      <h2>Get checklists through the Skillhive API</h2>
+  </div>
+
+    <div class="content">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="#list">List checklists</a></li>
+        <li><a href="#create">Create a checklist</a></li>
+        <li><a href="#single">Get a single checklist</a></li>
+        <li><a href="#update">Update a checklist</a></li>
+        <li><a href="#delete">Delete a checklist</a></li>
+        <li><a href="#itemlist">List items</a></li>
+        <li><a href="#itemcreate">Create an item</a></li>
+        <li><a href="#itemsingle">Get a single item</a></li>
+        <li><a href="#itemupdate">Update an item</a></li>
+        <li><a href="#itemdelete">Delete an item</a></li>
+    </ul>
+</div>
+
+<h2 id="list">List Swarm Checklists</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/</code></em></p>
+
+<p>Fetch checklists in a swarm</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get swarm checklists</td>
+            <td>
+              <ul>
+                <li>Offset: <code>int</code> fetch checklists starting from (optional, default: 0)</li>
+                <li>Limit: <code>int</code> how many checklists to get (optional, default: 20, limit 0-50)</li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>{
+  "limit":20,
+  "offset":0,
+  "previous":null,
+  "next":"/api/swarm/67521/checklist/?offset=20&amp;limit=20",
+  "total_count":3,
+  "collection": [
+    {
+      "id":8989,
+      "uri":"/api/swarm/67521/checklist/8989/"
+      "title":"My ToDos",
+      "user":{                 // The user who created the Checklist
+        "id":765,
+        "uri":"/api/user/765/",
+        "name":"User Name",
+        "icon_url":"https://company.skillhive.com/user/765/icon"
+      },
+      "assigned_to":{          // This is an optional value. It can be
+        "id":765,              // null or point to an existing user.
+        "uri":"/api/user/765/",
+        "name":"User Name",
+        "icon_url":"https://company.skillhive.com/user/765/icon"
+      },
+      "resources": {
+        "items": "/api/swarm/67521/checklist/8989/item/"
+      }
+      "created_at":
+      "updated_at":
+    },
+    {
+      "id":8998,
+      "uri":"/api/swarm/67521/checklist/8998/"
+      "title":"Check these out",
+      "user":{                 // The user who created the Checklist
+        "id":168,
+        "uri":"/api/user/168/",
+        "name":"User Name",
+        "icon_url":"https://company.skillhive.com/user/168/icon"
+      },
+      "assigned_to":null,      // This is an optional value. Null if not set.
+      "resources": {
+        "items": "/api/swarm/67521/checklist/8989/item/"
+      },
+      "created_at":
+      "updated_at":
+    },
+    ...
+  ]
+}
+</code></pre>
+
+<h2 id="create">Create a Checklist</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/</code></em></p>
+
+<p>Create a new checklist in swarm.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create a new Checklist</td>
+            <td>
+              <ul>
+                <li>title: <code>string</code> The title of the Checklist (required)</li>
+                <li>assigned_to: <code>int | hash</code> The user id, or a hash including user id for the user this checklist is assigned to (optional)</li> 
+                <li>copy_from: <code>int</code> Checklist id for copying the items (optional)</li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the checklist is succesfully created, the created checklist will be returned. For instance:</p>
+
+<pre><code>{
+  "id":8989,
+  "uri":"/api/swarm/67521/checklist/8989/"
+  "title":"My ToDos",
+  "user":{                 // The user who created the Checklist
+    "id":765,
+    "uri":"/api/user/765/",
+    "name":"User Name",
+    "icon_url":"https://company.skillhive.com/user/765/icon"
+  },
+  "assigned_to":{          // This is an optional value. It can be
+    "id":765,              // null or point to an existing user.
+    "uri":"/api/user/765/",
+    "name":"User Name",
+    "icon_url":"https://company.skillhive.com/user/765/icon"
+  },
+  "resources": {
+    "items": "/api/swarm/67521/checklist/8989/item/"
+  }
+  "created_at":
+  "updated_at":
+}
+</code></pre>
+
+<h2 id="single">Get a single Checklist</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id</code></em></p>
+
+<p>Get a single checklist identified by <code>checklist_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get a Checklist</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Return the checklist, for instance:</p>
+
+<pre><code>{
+  "id":8989,
+  "uri":"/api/swarm/67521/checklist/8989/"
+  "title":"My ToDos",
+  "user":{                 // The user who created the Checklist
+    "id":765,
+    "uri":"/api/user/765/",
+    "name":"User Name",
+    "icon_url":"https://company.skillhive.com/user/765/icon"
+  },
+  "assigned_to":{          // This is an optional value. It can be
+    "id":765,              // null or point to an existing user.
+    "uri":"/api/user/765/",
+    "name":"User Name",
+    "icon_url":"https://company.skillhive.com/user/765/icon"
+  },
+  "resources": {
+    "items": "/api/swarm/67521/checklist/8989/item/"
+  }
+  "created_at":
+  "updated_at":
+}
+</code></pre>
+
+<h2 id="update">Update a Checklist</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id</code></em></p>
+
+<p>Update an existing checklist identified by <code>checklist_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PUT</td>
+            <td>Update a Checklist</td>
+            <td>
+              <ul>
+                <li>title: <code>string</code> The title of the Checklist (required)</li>
+                <li>assigned_to: <code>int | hash</code> The user id, or a hash including user id for the user this checklist is assigned to (optional)</li> 
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the checklist is succesfully updated, the updated checklist will be returned. For instance:</p>
+
+<pre><code>{
+  "id":8989,
+  "uri":"/api/swarm/67521/checklist/8989/"
+  "title":"My ToDos",
+  "user":{                 // The user who created the Checklist
+    "id":765,
+    "uri":"/api/user/765/",
+    "name":"User Name",
+    "icon_url":"https://company.skillhive.com/user/765/icon"
+  },
+  "assigned_to":{          // This is an optional value. It can be
+    "id":765,              // null or point to an existing user.
+    "uri":"/api/user/765/",
+    "name":"User Name",
+    "icon_url":"https://company.skillhive.com/user/765/icon"
+  },
+  "resources": {
+    "items": "/api/swarm/67521/checklist/8989/item/"
+  }
+  "created_at":
+  "updated_at":
+}
+</code></pre>
+
+<h2 id="delete">Delete a Checklist</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id</code></em></p>
+
+<p>Delete an existing checklist identified by <code>checklist_id</code>. <em>This will delete all items in this checklist as well.</em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DELETE</td>
+            <td>Delete a Checklist</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the checklist is succesfully deleted, the server will return a HTTP Response with status code 200.</p>
+
+<h2 id="itemlist">List Checklist Items</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id/item/</code></em></p>
+
+<p>Fetch items in a checklist.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get items in a checklist</td>
+            <td>
+              <ul>
+                <li>Offset: <code>int</code> fetch checklists starting from (optional, default: 0)</li>
+                <li>Limit: <code>int</code> how many checklists to get (optional, default: 20, limit 0-50)</li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>{
+  "limit":20,
+  "offset":0,
+  "previous":null,
+  "next":"/api/swarm/67521/checklist/24/item/?offset=20&amp;limit=20",
+  "total_count":26,
+  "collection": [
+    {
+      "id": 22,
+      "title": "First task",
+      "uri": "/api/swarm/14548/checklist/24/item/22",
+      "user": {                        // The user who created the item
+        "id": "123",
+        "name": "Jaakko Naakka",
+        "uri": "/api/user/123",
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
+      },
+      "checklist": {   // The checklist this item belongs to
+        "id": "24",
+        "uri": "/api/swarm/14548/checklist/24"
+      },
+      "completed_by": {   // Either null or user who marked this item completed
+        "id": "123",
+        "name": "Jaakko Naakka",
+        "uri": "/api/user/123",
+        "icon_url": "https://company.skillhive.com//user/123/icon/"
+      },
+      "completed_at": {   // Either null or timestamp when the item was completed
+        "date": "Thu, 3 Mar 2014 10:45:29 +0200",
+        "friendly_time": "yesterday",
+        "date_local": "2014-3-3"
+      },
+      "created_at": {
+        "date": "Wed, 30 Jan 2014 12:37:47 +0200",
+        "friendly_time": "33 days ago",
+        "date_local": "2014-1-30"
+      },
+      "updated_at": {
+        "date": "Thu, 3 Mar 2014 10:45:29 +0200",
+        "friendly_time": "yesterday",
+        "date_local": "2014-3-3"
+      },
+    ...
+  ]
+}
+</code></pre>
+
+<h2 id="itemcreate">Create a new Checklist Item</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id/item/</code></em></p>
+
+<p>Fetch items in a checklist.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create a new checklist item</td>
+            <td>
+              <ul>
+                <li>title: <code>string</code> The title of the checklist item (required)</li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the checklist item is succesfully created, the created item will be returned. For instance:</p>
+
+<pre><code>{
+  "id": 22,
+  "title": "First task",
+  "uri": "/api/swarm/14548/checklist/24/item/22",
+  "user": {                        // The user who created the item
+    "id": "123",
+    "name": "Jaakko Naakka",
+    "uri": "/api/user/123",
+    "icon_url": "https://company.skillhive.com//user/123/icon/"
+  },
+  "checklist": {   // The checklist this item belongs to
+    "id": "24",
+    "uri": "/api/swarm/14548/checklist/24"
+  },
+  "completed_by":null,
+  "completed_at":null,
+  "created_at": {
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+  },
+  "updated_at": {
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+}
+</code></pre>
+
+<h2 id="itemsingle">Get a single Checklist Item</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id/item/:item_id</code></em></p>
+
+<p>Get a single checklist item identified by <code>item_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get a single checklist item</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Get a single checklist item, for instance:</p>
+
+<pre><code>{
+  "id": 22,
+  "title": "First task",
+  "uri": "/api/swarm/14548/checklist/24/item/22",
+  "user": {                        // The user who created the item
+    "id": "123",
+    "name": "Jaakko Naakka",
+    "uri": "/api/user/123",
+    "icon_url": "https://company.skillhive.com//user/123/icon/"
+  },
+  "checklist": {   // The checklist this item belongs to
+    "id": "24",
+    "uri": "/api/swarm/14548/checklist/24"
+  },
+  "completed_by": {   // Either null or user who marked this item completed
+    "id": "123",
+    "name": "Jaakko Naakka",
+    "uri": "/api/user/123",
+    "icon_url": "https://company.skillhive.com//user/123/icon/"
+  },
+  "completed_at": {   // Current server time
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+  },
+  "created_at": {
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+  },
+  "updated_at": {
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+}
+</code></pre>
+
+<h2 id="itemupdate">Update a Checklist Item</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id/item/:item_id</code></em></p>
+
+<p>Update a checklist item identified by <code>item_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PUT</td>
+            <td>Update a checklist item</td>
+            <td>
+              <ul>
+                <li>title: <code>string</code> The title of the checklist item (required)</li>
+                <li>completed_at: <code>string</code> This can be a <code>boolean</code> or a timestamp or
+                a date string. The <code>completed_at</code> timestamp will always be saved as the current
+                time of the server (optional).
+                </li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the checklist item is succesfully update, the updated item will be returned. The user who set
+the item completed is always the currently loggedin user. An example of the returned item:</p>
+
+<pre><code>{
+  "id": 22,
+  "title": "First task",
+  "uri": "/api/swarm/14548/checklist/24/item/22",
+  "user": {                        // The user who created the item
+    "id": "123",
+    "name": "Jaakko Naakka",
+    "uri": "/api/user/123",
+    "icon_url": "https://company.skillhive.com//user/123/icon/"
+  },
+  "checklist": {   // The checklist this item belongs to
+    "id": "24",
+    "uri": "/api/swarm/14548/checklist/24"
+  },
+  "completed_by": {   // Either null or user who marked this item completed
+    "id": "123",
+    "name": "Jaakko Naakka",
+    "uri": "/api/user/123",
+    "icon_url": "https://company.skillhive.com//user/123/icon/"
+  },
+  "completed_at": {   // Current server time
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+  },
+  "created_at": {
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+  },
+  "updated_at": {
+    "date": "Fri, 30 Jan 2014 12:37:47 +0200",
+    "friendly_time": "just now",
+    "date_local": "2014-1-30"
+}
+</code></pre>
+
+<h2 id="itemdelete">Delete a Checklist Item</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/checklist/:checklist_id/item/:item_id</code></em></p>
+
+<p>Delete a checklist item identified by <code>item_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DELETE</td>
+            <td>Delete a Checklist Item</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the item is succesfully deleted, the server will return a HTTP Response with status code 200.</p>
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+    <div class="pure-g-r side-menu" id="footer">
+    <div class="pure-u-1-2">
+      &copy; Intunex Oy 2015
+  </div><div class="pure-u-1-2">
+              <div class="pull-right">
+          Updated on 23 Jan 2015
+        </div>
+        </div>
+</div>
+    <script src="http://intunex.github.io/developer/js/main.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17540740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+  </body>
+</html>

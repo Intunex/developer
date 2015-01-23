@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Swarm Members &middot; Skillhive Developer Community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Intunex Oy">
+    
+                  
+          <meta name="description" content="
+    
+        List members
+        Add a member
+        Get a single member
+        Update membership
+        Remove a member
+    
+
+
+List Swarm Member">    
+        
+        
+    <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+  <link href="http://intunex.github.io/developer/css/main.css" rel="stylesheet">  
+      </head>
+  <body>
+    <!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
+
+    <ul>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API</a></li>
+      <li ><a href="http://intunex.github.io/developer/blog/">Blog</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="pure-g-r side-menu" id="layout">
+  <!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li ><a href="http://intunex.github.io/developer/api/">Basics</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/authentication/">Authentication</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/profile/">User Profiles</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/skill/">Skills</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/swarm/">Swarms</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/swarm/checklist/">Swarm Checklists</a></li>
+          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/swarm/member/">Swarm Members</a></li>
+      </ul>
+  </div>
+</div>
+  <div class="pure-u-1" id="main">
+    <div class="header">
+  <h1>Swarm Members</h1>
+      <h2>Get swarm members through the Skillhive API</h2>
+  </div>
+
+    <div class="content">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="#list">List members</a></li>
+        <li><a href="#create">Add a member</a></li>
+        <li><a href="#single">Get a single member</a></li>
+        <li><a href="#update">Update membership</a></li>
+        <li><a href="#delete">Remove a member</a></li>
+    </ul>
+</div>
+
+<h2 id="list">List Swarm Members</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/member/</code></em></p>
+
+<p>Fetch all members in a swarm.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get swarm members</td>
+            <td>
+              <ul>
+                <li>Offset: <code>int</code> fetch members starting from (optional, default: 0)</li>
+                <li>Limit: <code>int</code> how many members to get (optional, default: 20, limit 0-50)</li>
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>{
+  "limit":20,
+  "offset":0,
+  "previous":null,
+  "next":"/api/swarm/67521/member/?offset=20&amp;limit=20",
+  "total_count":28,
+  "collection": [
+    {
+      "id": 4535,
+      "relationship": "member",
+      "role": "",
+      "start_at": {
+        "friendly_time": "yesterday",
+        "date_local": "22.1.2015",
+        "date": "Thu, 22 Jan 2015 14:17:43 +0200"
+      },
+      "end_at": null,
+      "created_at": {
+        "friendly_time": "two weeks ago",
+        "date_local": "22.1.2015",
+        "date": "Thu, 22 Jan 2015 14:17:43 +0200"
+      },
+      "updated_at": {
+        "friendly_time": "yesterday",
+        "date_local": "22.1.2015",
+        "date": "Thu, 22 Jan 2015 14:17:43 +0200"
+      },
+      "user": {
+        "id": 4535,
+        "name": "Skillhive Tester",
+        "uri": "\/api\/user\/4535",
+        "icon_url": ""https://skillhive.com/public/user/4535/icon/small/"",
+        "email": "testuser@skillhive.com",
+      }
+    },
+    ...
+  ]
+}
+</code></pre>
+
+<h2 id="create">Add a Member</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/member/</code></em></p>
+
+<p>Add a new member to swarm.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Add a new member to swarm.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Possible post parameters:</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Optional</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>user_id</td>
+            <td>integer</td>
+            <td>Current user's id</td>
+            <td>true</td>
+        </tr><tr>
+            <td>start_at</td>
+            <td>string</td>
+            <td><code>now()</code></td>
+            <td>true</td>
+        </tr><tr>
+            <td>end_at</td>
+            <td>string</td>
+            <td></td>
+            <td>true</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If <code>user_id</code> parameter is not sent the user making the request will be added as a member. 
+Optionally, you can also define start and end dates for the membership. Notice, that the
+dates are not used in all swarm types.</p>
+
+<p>If the membership is succesfully created, the returned response will be similar to the 
+result when viewing <a href="#single">a single membership</a>.</p>
+
+<h2 id="single">Get a single Member</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/member/:user_id</code></em></p>
+
+<p>Get a membership identified by <code>user_id</code>,</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get a membership</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Return the membership, for instance:</p>
+
+<pre><code>{
+  "id": 4535,
+  "relationship": "member",
+  "role": "",
+  "start_at": {
+    "friendly_time": "yesterday",
+    "date_local": "22.1.2015",
+    "date": "Thu, 22 Jan 2015 14:17:43 +0200"
+  },
+  "end_at": null,
+  "created_at": {
+    "friendly_time": "two weeks ago",
+    "date_local": "22.1.2015",
+    "date": "Thu, 22 Jan 2015 14:17:43 +0200"
+  },
+  "updated_at": {
+    "friendly_time": "yesterday",
+    "date_local": "22.1.2015",
+    "date": "Thu, 22 Jan 2015 14:17:43 +0200"
+  },
+  "user": {
+    "id": 4535,
+    "name": "Skillhive Tester",
+    "uri": "\/api\/user\/4535",
+    "icon_url": ""https://skillhive.com/public/user/4535/icon/small/"",
+    "email": "testuser@skillhive.com",
+  }
+}
+</code></pre>
+
+<p>Some swarm types can have special user roles in the swarm. For instance, course swarms may 
+have teachers and onboarding swarms might have onboardess.</p>
+
+<h2 id="update">Update a Membership</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/member/:user_id</code></em></p>
+
+<p>Update an existing membership identified by <code>user_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PUT</td>
+            <td>Update a membership</td>
+            <td>
+              <ul>
+                <li>start_at <code>string</code> The start date.</li>
+                <li>end_at <code>string</code> The end date.</li> 
+              </ul>            
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the membership is succesfully updated, the returned response will be similar to the 
+result when viewing <a href="#single">a single membership</a>.</p>
+
+<h2 id="delete">Remove a Member</h2>
+
+<p><em>Endpoint: <code>/api/swarm/:swarm_id/member/:user_id</code></em></p>
+
+<p>Remove a user from swarm identified by <code>user_id</code>.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DELETE</td>
+            <td>Remove a member.</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If the member is succesfully removed, the server will return a HTTP Response with status code 200.</p>
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+    <div class="pure-g-r side-menu" id="footer">
+    <div class="pure-u-1-2">
+      &copy; Intunex Oy 2015
+  </div><div class="pure-u-1-2">
+              <div class="pull-right">
+          Updated on 23 Jan 2015
+        </div>
+        </div>
+</div>
+    <script src="http://intunex.github.io/developer/js/main.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17540740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+  </body>
+</html>
