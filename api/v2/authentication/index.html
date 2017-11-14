@@ -35,8 +35,8 @@ Authentication ">
     <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
 
     <ul>
-      <li ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
-      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
+      <li ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
       </ul>
     </div>
 </div>
@@ -48,16 +48,13 @@ Authentication ">
 <div class="pure-u" id="menu">
   <div class="pure-menu pure-menu-open">
       <ul>
-          <li ><a href="http://intunex.github.io/developer/api/">Basics</a></li>
-          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/authentication/">Authentication</a></li>
-          <li ><a href="http://intunex.github.io/developer/api/profile/">User Profiles</a></li>
-          <li ><a href="http://intunex.github.io/developer/api/skill/">Skills</a></li>
-          <li ><a href="http://intunex.github.io/developer/api/swarm/">Swarms</a></li>
-          <li ><a href="http://intunex.github.io/developer/api/swarm/checklist/">Swarm Checklists</a></li>
-          <li ><a href="http://intunex.github.io/developer/api/swarm/member/">Swarm Members</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/">Introduction</a></li>
+          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/v2/authentication/">Authentication</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/profile/">User Profiles</a></li>
       </ul>
   </div>
 </div>
+
   <div class="pure-u-1" id="main">
     <div class="header">
   <h1>Skillhive API Authentication</h1>
@@ -152,11 +149,11 @@ requested url.</p>
 
 <h2 id="examples">Examples</h2>
 
-<p>Here is an example how to create the signature PHP. Let's assume we're trying to list all users in Skillhive
+<p>Here is an example how to create the signature using PHP. Let's assume we're trying to list all users in Skillhive
 throught the api.</p>
 
 <pre><code>// The data that we need for signing the request
-$url     = "https://demo.skillhive.com/api/user/"; // List all users
+$url     = "https://demo.skillhive.com/api/v2/users"; // List all users
 $content = "";                                // Empty for GET requests
 $api_id  = "c7ds89c7shc7ds98h98";             // A random Api-Id recieved from Skillhive
 $user    = "testuser@demoskillhive.com";           // Email of "loggedin" user
@@ -191,7 +188,7 @@ $signature = base64_encode($signature);
       &copy; Intunex Oy 2017
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 03 Jul 2014
+          Updated on 14 Nov 2017
         </div>
         </div>
 </div>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Skillhive API &middot; Skillhive Developer Community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Intunex Oy">
+    
+                  
+          <meta name="description" content="
+    
+        Responses
+        Endpoints
+        About
+    
+
+
+About Skillhive API v2
+
+Skillhive API v2 is built on JsonAPI standard and it&#039;s designed">    
+        
+        
+    <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+  <link href="http://intunex.github.io/developer/css/main.css" rel="stylesheet">  
+      </head>
+  <body>
+    <!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
+
+    <ul>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
+      <li ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="pure-g-r side-menu" id="layout">
+  <!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/v2/">Introduction</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/authentication/">Authentication</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/profile/">User Profiles</a></li>
+      </ul>
+  </div>
+</div>
+
+  <div class="pure-u-1" id="main">
+    <div class="header">
+  <h1>Skillhive API</h1>
+      <h2>Skillhive API Documentation</h2>
+  </div>
+
+    <div class="content">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="#responses">Responses</a></li>
+        <li><a href="#endpoints">Endpoints</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</div>
+
+<h2 id="about">About Skillhive API v2</h2>
+
+<p>Skillhive API v2 is built on <a href="http://jsonapi.org/">JsonAPI</a> standard and it's designed
+to be flexible and developer friendly. JsonAPI is widely supported in almost any programming language you can think of.</p>
+
+<p>This is the v2 of the API. You should use this version for all new applications as the older v1 specification is being deprecated.</p>
+
+<h2 id="endpoints">API Endpoints</h2>
+
+<blockquote>
+  <p>Main endpoint for the API is <code>https://&lt;customerid&gt;.skillhive.com/api/v2/</code></p>
+</blockquote>
+
+<p>Skillhive API v2 has a very flat structure. For instance, listing all user accounts
+is handled by the endpoint</p>
+
+<pre><code>GET /api/v2/users
+</code></pre>
+
+<p>A single user account, whose id is 12345 can be fetched from</p>
+
+<pre><code>GET /api/v2/users/12345
+</code></pre>
+
+<p>The flatness of the API is more evident in fetching resources that belong to another entity.
+For instance, if you want to get the users skills, they can be accessed from the endpoint</p>
+
+<pre><code>GET /api/v2/user-skills?user=12345
+</code></pre>
+
+<p>and <em>not</em> at /users/12345/skills as you might have expected.</p>
+
+<h2 id="responses">Responses</h2>
+
+<p>We embrace the HTTP specification and set the status codes, content types
+and other HTTP headers accordingly. Almost all responses have some common
+elements in them. These are described below.</p>
+
+<h3>Listings</h3>
+
+<p>All listing responses through the API will be in the following format. Here's
+an example of what a call to <code>/users</code> could look like.</p>
+
+<pre><code>{
+  "data": [               // The user collection
+    {
+      type": "users",
+      "id": "15992",
+      "attributes": {
+        "name": "Jaakko Naakka",
+        "email": "jaakko@naakka.net",
+        "created-at": "Mon, 26 May 2014 13:59:07 +0300",
+        "updated-at": "Fri, 03 Nov 2017 15:28:46 +0200",
+      }
+    },
+    ... // More user accounts
+  ],
+  "meta": {               // Metadata about the request
+    "total-count": "145"  // Total count of user models          
+  }
+}
+</code></pre>
+
+<h3>Objects</h3>
+
+<p>Almost all objects will include some common elements. Here's an example of
+a user object:</p>
+
+<pre><code>{
+  "id":12345,               // All objects have an `id`
+  "created-at" :            // Timestamps telling when the object was created...
+  "updated-at" :            // ... and when it was modified.
+}
+</code></pre>
+
+<h3>Timestamps</h3>
+
+<p>Almost all objects returned by the API will include timestamps <code>created-at</code> and <code>updated-at</code>
+describing the the time the object was created and when it was last updated.</p>
+
+<p>All timestamps returned by the api are in <a href="https://tools.ietf.org/html/rfc2822#page-14">RFC 2822</a> format.</p>
+
+<p>Some objects may include other timestamps as well.</p>
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+    <div class="pure-g-r side-menu" id="footer">
+    <div class="pure-u-1-2">
+      &copy; Intunex Oy 2017
+  </div><div class="pure-u-1-2">
+              <div class="pull-right">
+          Updated on 14 Nov 2017
+        </div>
+        </div>
+</div>
+    <script src="http://intunex.github.io/developer/js/main.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17540740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+  </body>
+</html>

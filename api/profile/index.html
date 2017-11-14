@@ -39,8 +39,8 @@ Endpoint: /api/user/
     <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
 
     <ul>
-      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API</a></li>
-      <li ><a href="http://intunex.github.io/developer/blog/">Blog</a></li>
+      <li ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
       </ul>
     </div>
 </div>
@@ -96,7 +96,7 @@ Endpoint: /api/user/
               <ul>
                 <li><code>offset</code>: <code>int</code> fetch profiles starting from (optional, default: 0)</li>
                 <li><code>limit</code>: <code>int</code> how many profiles to get (optional, default: 20, limit 0-50)</li>
-                <li>Optional search options: 
+                <li>Optional search options:
                   <ul>
                     <li><code>skill[]</code> Match users by these skills.</li>
                   </ul>
@@ -119,7 +119,7 @@ Endpoint: /api/user/
     {
       "id":12345,
       "name":"Test User",
-      "uri":"/api/user/12345/", 
+      "uri":"/api/user/12345/",
       "description":"I'm just a PHP programmer.",
       "job_title":"PHP Coder.",
       "location": ["Helsinki", "Finland"],
@@ -139,7 +139,7 @@ Endpoint: /api/user/
         "skills":"/api/user/12345/skill/"
       },
       "created_at" :
-      "updated_at" : 
+      "updated_at" :
     },
     ...
   ]
@@ -171,7 +171,7 @@ Endpoint: /api/user/
 
 <pre><code>{
   "id":12345,
-  "uri":"/api/user/12345/", 
+  "uri":"/api/user/12345/",
   "name":"Test User",
   "description":"I'm just a PHP programmer.",
   "job_title":"PHP Coder.",
@@ -190,7 +190,7 @@ Endpoint: /api/user/
     "skills":"/api/user/12345/skill/"
   },
   "created_at" :
-  "updated_at" : 
+  "updated_at" :
 }
 </code></pre>
     </div>
@@ -198,7 +198,7 @@ Endpoint: /api/user/
 </div><!-- end div layout -->
     <div class="pure-g-r side-menu" id="footer">
     <div class="pure-u-1-2">
-      &copy; Intunex Oy 2015
+      &copy; Intunex Oy 2017
   </div><div class="pure-u-1-2">
               <div class="pull-right">
           Updated on 03 Jul 2014

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users &middot; Skillhive Developer Community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Intunex Oy">
+    
+                  
+          <meta name="description" content="
+    
+        List all users
+        Get a single user
+    
+
+
+List all users in Skillhive
+
+This is also the main endpoint for searching for users.
+
+En">    
+        
+        
+    <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+  <link href="http://intunex.github.io/developer/css/main.css" rel="stylesheet">  
+      </head>
+  <body>
+    <!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
+
+    <ul>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
+      <li ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="pure-g-r side-menu" id="layout">
+  <!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li ><a href="http://intunex.github.io/developer/api/v2/">Introduction</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/authentication/">Authentication</a></li>
+          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/v2/profile/">User Profiles</a></li>
+      </ul>
+  </div>
+</div>
+
+  <div class="pure-u-1" id="main">
+    <div class="header">
+  <h1>Users</h1>
+      <h2>Get user data through the Skillhive API</h2>
+  </div>
+
+    <div class="content">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="#list">List all users</a></li>
+        <li><a href="#single">Get a single user</a></li>
+    </ul>
+</div>
+
+<h2 id="list">List all users in Skillhive</h2>
+
+<p>This is also the main endpoint for searching for users.</p>
+
+<p><em>Endpoint: <code>/api/v2/users</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>List users</td>
+            <td>
+              <ul>
+                <li><code>offset</code>: <code>int</code> fetch profiles starting from (optional, default: 0)</li>
+                <li><code>limit</code>: <code>int</code> how many profiles to get (optional, default: 20, limit 0-50)</li>
+                <li>Optional search options:
+                  <ul>
+                    <li><code>query</code> A generic search term to search for</li>
+                    <li><code>skills[]</code> Match users by these skills.</li>
+                  </ul>
+                </li>
+                <li>Optional sort parameters:
+                  <ul>
+                    <li><code>name</code> Sort in alphabetical order (default)</li>
+                    <li><code>competence</code> Sort by matched competence (only available when searching users by skills)</li>
+                    <li><code>interest</code> Sort by matched interest (only available when searching users by skills)</li>
+                    <li><code>recommendations</code> Sort by the number of recommendations the users have got (only available when searching users by skills)</li>
+                    <li><code>price</code> Sort by user defined price (only available in select sites)</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>Create user</td>
+            <td>
+              <ul>
+                <li><code>offset</code>: <code>int</code> fetch profiles starting from (optional, default: 0)</li>
+                <li><code>limit</code>: <code>int</code> how many profiles to get (optional, default: 20, limit 0-50)</li>
+                <li>Optional search options:
+                  <ul>
+                    <li><code>skill[]</code> Match users by these skills.</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>"data": [ // The returned user collection
+  { // A user object
+    "type": "users",
+    "id": "12345",      // The user id
+    "attributes": {     // User attributes
+      "name": "Jaakko Naakka",
+      "email": "jaakko.naakka@intunex.fi",
+      "description": "",
+      "location": [
+        "Finland",
+        "Akaa"
+      ],
+      "unit": [
+        "Development"
+      ],
+      "phone": [
+        "123455"
+      ],
+      "mobile": [
+        "123466"
+      ],
+      "is-enabled": true,
+      "access-level": "admin",
+      "img-url": {
+        "small": "&lt;Absolute URL to small version of user icon&gt;",
+        "medium": "Absolute &lt;URL to medium version of user icon&gt;",
+        "large": "Absolute &lt;URL to large version of user icon&gt;"
+        "xlarge": "Absolute &lt;URL to extra large version of user icon&gt;"
+        "master": "Absolute &lt;URL to the original version of user icon&gt;"
+      },
+      "competence": 0,      // Competence, interest and...
+      "interest": 0,        // ... recommendations are only available
+      "recommendations": 0, // ... when you're searching users by skills.
+      "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
+      "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
+      "price": 145, // Prices are only used in some sites
+      "price2": 8.45,
+      "price3": 780,
+      "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
+    },
+    "links": {
+      "self": "/api/v2/users/2972"  // API link to the user profile itself
+    }
+  },
+  ... // More user accounts.
+],
+"meta": {
+  "total-count": 145 // Number of user account.
+}
+</code></pre>
+
+<p>}</p>
+
+<h2 id="single">Fetch a single user profile</h2>
+
+<p><em>Endpoint: <code>/api/users/:user_id</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get user profile defined by <code>user_id</code></td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>PATCH</td>
+            <td>Update a user profile identified by <code>user_id</code></td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response:</p>
+
+<pre><code>"data": {
+  "type": "users",
+  "id": "12345",      // The user id
+  "attributes": {     // User attributes
+    "name": "Jaakko Naakka",
+    "email": "jaakko.naakka@intunex.fi",
+    "description": "",
+    "location": [
+      "Finland",
+      "Akaa"
+    ],
+    "unit": [
+      "Development"
+    ],
+    "phone": [
+      "123455"
+    ],
+    "mobile": [
+      "123466"
+    ],
+    "is-enabled": true,
+    "access-level": "admin",
+    "img-url": {
+      "small": "&lt;Absolute URL to small version of user icon&gt;",
+      "medium": "Absolute &lt;URL to medium version of user icon&gt;",
+      "large": "Absolute &lt;URL to large version of user icon&gt;"
+      "xlarge": "Absolute &lt;URL to extra large version of user icon&gt;"
+      "master": "Absolute &lt;URL to the original version of user icon&gt;"
+    },
+    "competence": 0,      // Competence, interest and...
+    "interest": 0,        // ... recommendations are only available
+    "recommendations": 0, // ... when you're searching users by skills.
+    "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
+    "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
+    "price": 145, // Prices are only used in some sites
+    "price2": 8.45,
+    "price3": 780,
+    "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
+  }
+},
+relationships": {
+  "roles": {
+    "data": [
+      {
+        "type": "userroles",
+        "id": "47244"
+      },
+      {
+        "type": "userroles",
+        "id": "14251"
+      }
+    ]
+  }    
+},
+"included": [
+  {
+    "type": "userroles",
+    "id": "47244",
+    "attributes": {
+      "title": "Software Developers"
+    }
+  },
+  {
+    "type": "userroles",
+    "id": "14251",
+    "attributes": {
+      "title": "Design Team"
+    }
+  },
+]
+</code></pre>
+
+<p>As you can see, when you fetch a single user profile, the response includes a lot
+more information about the user than the generic list endpoint does.</p>
+
+<p>The  <code>relationships</code> key includes some details about the relationships the user has
+to some other types of models. In this case, it describes all the roles the user has.
+This is very convenient, as you can get a lot more information about the user in
+a single GET request.</p>
+
+<p>The <code>included</code> key holds a list of some objects (or partial objects) that are
+included in the response. In this case it includes partial details about the
+roles the user has. This includes just the title and the id of the user role. This
+information is enough to show what roles the user has and create links to the
+user roles themselves.</p>
+
+<p>Here is a more detailed description of all the user attributes and how to update them:</p>
+
+<table class="pure-table pure-table-striped">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>string</td>
+            <td>true</td>
+            <td>ID is always provided by Skillhive and it cannot be changed. At the moment, all ids are of type <code>int</code> but this will change into strings in the future.</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>true</td>
+            <td>Name of the user.</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>true</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>string</td>
+            <td>false</td>
+            <td>The description summary of the user.</td>
+        </tr>
+        <tr>
+            <td>location</td>
+            <td>array</td>
+            <td>false</td>
+            <td>An array of strings.</td>
+        </tr>
+        <tr>
+            <td>unit</td>
+            <td>array</td>
+            <td>false</td>
+            <td>An array of strings.</td>
+        </tr>
+        <tr>
+            <td>phone</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of phone numbers as strings.</td>
+        </tr>
+        <tr>
+            <td>mobile</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of mobile numbers as strings.</td>
+        </tr>
+        <tr>
+            <td>jobtitle</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of strings.</td>
+        </tr>
+        <tr>
+            <td>website</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of strings.</td>
+        </tr>
+        <tr>
+            <td>skype</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of strings.</td>
+        </tr>
+        <tr>
+            <td>linkedin</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of strings. The absolute URL to LinkedIn profile. <strong>Notice</strong>, this is updated automatically when user authorizes Skillhive to fetch their LinkedIn profile data. This value cannot be changed in Skillhive.</td>
+        </tr>
+        <tr>
+            <td>twitter</td>
+            <td>array</td>
+            <td>false</td>
+            <td>Array of strings.</td>
+        </tr>
+        <tr>
+            <td>is-enabled</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>A simple boolean stating if the user account is enabled or not. Disabled users cannot log in or do anything in Skillhive.</td>
+        </tr>
+        <tr>
+            <td>access-level</td>
+            <td>string</td>
+            <td>true</td>
+            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code> and <code>ext</code>.</td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td>double</td>
+            <td>false</td>
+            <td>Price is only used in some sites. <strong>Notice</strong>, sorting user accounts in search results is only possible based on <code>price</code> atteibute, not <code>price2</code> or <code>price3</code>.</td>
+        </tr>
+        <tr>
+            <td>price2</td>
+            <td>double</td>
+            <td>false</td>
+            <td>Price is only used in some sites. <strong>Notice</strong>, sorting user accounts in search results is only possible based on <code>price</code> atteibute, not <code>price2</code> or <code>price3</code>.</td>
+        </tr>
+        <tr>
+            <td>price3</td>
+            <td>double</td>
+            <td>false</td>
+            <td>Price is only used in some sites. <strong>Notice</strong>, sorting user accounts in search results is only possible based on <code>price</code> atteibute, not <code>price2</code> or <code>price3</code>.</td>
+        </tr>
+        <tr>
+            <td>alt-id</td>
+            <td>string</td>
+            <td>false</td>
+            <td>An alternate id that's only used in integrations to other service.</td>
+        </tr>
+    </tbody>
+</table>
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+    <div class="pure-g-r side-menu" id="footer">
+    <div class="pure-u-1-2">
+      &copy; Intunex Oy 2017
+  </div><div class="pure-u-1-2">
+              <div class="pull-right">
+          Updated on 14 Nov 2017
+        </div>
+        </div>
+</div>
+    <script src="http://intunex.github.io/developer/js/main.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17540740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+  </body>
+</html>

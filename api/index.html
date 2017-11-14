@@ -36,8 +36,8 @@ Skillhive API is designed">
     <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
 
     <ul>
-      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API</a></li>
-      <li ><a href="http://intunex.github.io/developer/blog/">Blog</a></li>
+      <li ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
       </ul>
     </div>
 </div>
@@ -99,10 +99,10 @@ You don't have to define the content-type, then you will just get the latest ver
 <h2 id="browsing">Browsing the API</h2>
 
 <p>Skillhive API URI endpoints are designed to be as permanent as possible. But things change
-and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
+and we don't know what our API will evolve into. Keep this in mind and don't hardcode API
 endpoints into your application. Instead, ask the initial endpoints through the API.</p>
 
-<p>For exapmle, calling the root of the api at <code>/api/</code> will return the current user, and the user object 
+<p>For exapmle, calling the root of the api at <code>/api/</code> will return the current user, and the user object
 includes the URI for the user. Almost all objects include a <code>resources</code> object,
 which includes URI endpoints for resources belonging to that object.</p>
 
@@ -115,11 +115,11 @@ which includes URI endpoints for resources belonging to that object.</p>
 </code></pre>
 
 <p>Use the URI endpoints defined in the <code>resources</code> object and don't harcode
-the endpoints. If you want to get the user's skills, for instance, don't hardcode 
-the uri as <code>/api/user/:user_id/skill/</code> but use the URI defined in resources 
+the endpoints. If you want to get the user's skills, for instance, don't hardcode
+the uri as <code>/api/user/:user_id/skill/</code> but use the URI defined in resources
 instead.</p>
 
-<p>Of course, hopefully we will never have the need to change our URI format, but you 
+<p>Of course, hopefully we will never have the need to change our URI format, but you
 never know. It's good to get this right from the start.</p>
 
 <p>Notice that all URIs include a <strong>trailing slash</strong>.</p>
@@ -131,7 +131,7 @@ never know. It's good to get this right from the start.</p>
 <h2 id="responses">Responses</h2>
 
 <p>We embrace the HTTP specification and set the status codes, content types
-and other HTTP headers accordingly. Almost all responses have some common 
+and other HTTP headers accordingly. Almost all responses have some common
 elements in them. These are described below.</p>
 
 <h3>Listings</h3>
@@ -159,7 +159,7 @@ a user object:</p>
 <pre><code>{
   "id":12345,               // All objects have an `id`
   "uri":"/api/user/12345/", // Object URI is always included as `uri`
-  "created_at" :            // Timestamps telling when the object was created... 
+  "created_at" :            // Timestamps telling when the object was created...
   "updated_at" :            // ... and when it was modified.
 }
 </code></pre>
@@ -170,7 +170,7 @@ object include skills and colleagues in the following format</p>
 
 <pre><code>{
   "id":12345,          
-  "uri":"/api/user/12345/", 
+  "uri":"/api/user/12345/",
   "resources":{
     "skills":"/api/user/12345/skill/",
     "colleagues":"/api/user/12345/colleague/"
@@ -195,19 +195,19 @@ hash:</p>
 </code></pre>
 
 <p>The timestamps hash includes the full <code>date</code>, a <code>friendly_time</code> string and a localized
-<code>date_local</code> string for the date. <code>date</code> is formatted in the 
+<code>date_local</code> string for the date. <code>date</code> is formatted in the
 <a href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822 </a> format
 which is perfect for JavaScript, for instance.
 Notice, that <code>date_local</code> is formatted based on
 site language setting in Skillhive. For instance, in the above example <code>date_local</code> would
-be <code>30.1.2014</code> if Finnish had been chosen as the current language. <code>friendly_time</code> is 
+be <code>30.1.2014</code> if Finnish had been chosen as the current language. <code>friendly_time</code> is
 also translated based on the language setting in Skillhive.</p>
 
 <h2>Fetch URI endpoints and current user</h2>
 
 <p><em>Endpoint: <code>/api/</code></em></p>
 
-<p>This is the perfect starting points for using the API. Calling <code>/api/</code> 
+<p>This is the perfect starting points for using the API. Calling <code>/api/</code>
 will return the current user object and the URI endpoints for our API.</p>
 
 <table class="pure-table ">
@@ -251,7 +251,7 @@ will return the current user object and the URI endpoints for our API.</p>
     "linkedin_url":"http://linkedin.com/",
     "website":"http://intunex.fi",
     "created_at" :
-    "updated_at" : 
+    "updated_at" :
   },
   "resources":{
     "users":"/api/user/",
@@ -265,7 +265,7 @@ will return the current user object and the URI endpoints for our API.</p>
 </div><!-- end div layout -->
     <div class="pure-g-r side-menu" id="footer">
     <div class="pure-u-1-2">
-      &copy; Intunex Oy 2015
+      &copy; Intunex Oy 2017
   </div><div class="pure-u-1-2">
               <div class="pull-right">
           Updated on 03 Jul 2014
