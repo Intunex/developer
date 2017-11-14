@@ -2,6 +2,7 @@
 layout: api
 title: Users
 subtitle: Get user data through the Skillhive API
+menu: api
 sub_menu: profile
 date: 2014-07-03
 ---
@@ -32,7 +33,7 @@ date: 2014-07-03
               <ul>
                 <li><code>offset</code>: <code>int</code> fetch profiles starting from (optional, default: 0)</li>
                 <li><code>limit</code>: <code>int</code> how many profiles to get (optional, default: 20, limit 0-50)</li>
-                <li>Optional search options: 
+                <li>Optional search options:
                   <ul>
                     <li><code>skill[]</code> Match users by these skills.</li>
                   </ul>
@@ -55,7 +56,7 @@ An example of a return response:
         {
           "id":12345,
           "name":"Test User",
-          "uri":"/api/user/12345/", 
+          "uri":"/api/user/12345/",
           "description":"I'm just a PHP programmer.",
           "job_title":"PHP Coder.",
           "location": ["Helsinki", "Finland"],
@@ -75,13 +76,13 @@ An example of a return response:
             "skills":"/api/user/12345/skill/"
           },
           "created_at" :
-          "updated_at" : 
+          "updated_at" :
         },
         ...
       ]
     }
 
-    
+
 
 <h2 id="single">Fetch a single user profile</h2>
 
@@ -108,7 +109,7 @@ An example of a return response:
 
     {
       "id":12345,
-      "uri":"/api/user/12345/", 
+      "uri":"/api/user/12345/",
       "name":"Test User",
       "description":"I'm just a PHP programmer.",
       "job_title":"PHP Coder.",
@@ -127,5 +128,5 @@ An example of a return response:
         "skills":"/api/user/12345/skill/"
       },
       "created_at" :
-      "updated_at" : 
+      "updated_at" :
     }

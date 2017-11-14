@@ -1,0 +1,12 @@
+<!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li {% if page.sub_menu == "basics"%} class="pure-menu-selected"{% endif %}><a href="{{ site.url }}/api/v2/">Introduction</a></li>
+          <li {% if page.sub_menu == "authentication"%} class="pure-menu-selected"{% endif %}><a href="{{ site.url }}/api/v2/authentication/">Authentication</a></li>
+          <li {% if page.sub_menu == "profile"%} class="pure-menu-selected"{% endif %}><a href="{{ site.url }}/api/v2/profile/">User Profiles</a></li>
+      </ul>
+  </div>
+</div>

@@ -2,6 +2,7 @@
 layout: api
 title: Skills
 subtitle: Get skills through the Skillhive API
+menu: api
 sub_menu: skill
 date: 2014-07-03
 ---
@@ -18,7 +19,7 @@ date: 2014-07-03
 
 *Endpoint: `/api/skill/`*
 
-List all skills in Skillhive. 
+List all skills in Skillhive.
 
 <table class="pure-table">
     <thead>
@@ -85,7 +86,7 @@ An example of a return response:
 
 *Endpoint: `/api/skill/?skill=:skillname`*
 
-This is the "skill page" which shows a summary of experts and swarms who have this skills. 
+This is the "skill page" which shows a summary of experts and swarms who have this skills.
 
 <table class="pure-table">
     <thead>
@@ -126,7 +127,7 @@ An example of a return response:
 
 *Endpoint: `/api/user/:user_id/skill/`*
 
-Fetch a user's personal skills and competences. The skills are ordered by 
+Fetch a user's personal skills and competences. The skills are ordered by
 highlight, competence and interest.
 
 <table class="pure-table">

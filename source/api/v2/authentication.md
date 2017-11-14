@@ -1,10 +1,10 @@
 ---
-layout: api
+layout: apiv2
 title: Skillhive API Authentication
 subtitle: Authentication
-menu: api
+menu: apiv2
 sub_menu: authentication
-date: 2014-07-03
+date: 2017-11-14
 ---
 
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
@@ -86,11 +86,11 @@ The signature is made from a string like this:
 
 <h2 id="examples">Examples</h2>
 
-Here is an example how to create the signature PHP. Let's assume we're trying to list all users in Skillhive
+Here is an example how to create the signature using PHP. Let's assume we're trying to list all users in Skillhive
 throught the api.
 
     // The data that we need for signing the request
-    $url     = "https://demo.skillhive.com/api/user/"; // List all users
+    $url     = "https://demo.skillhive.com/api/v2/users"; // List all users
     $content = "";                                // Empty for GET requests
     $api_id  = "c7ds89c7shc7ds98h98";             // A random Api-Id recieved from Skillhive
     $user    = "testuser@demoskillhive.com";           // Email of "loggedin" user

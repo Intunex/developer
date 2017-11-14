@@ -2,6 +2,7 @@
 layout: api
 title: Skillhive API
 subtitle: Skillhive API Documentation
+menu: api
 sub_menu: basics
 date: 2014-07-03
 ---
@@ -39,10 +40,10 @@ You don't have to define the content-type, then you will just get the latest ver
 <h2 id="browsing">Browsing the API</h2>
 
 Skillhive API URI endpoints are designed to be as permanent as possible. But things change
-and we don't know what our API will evolve into. Keep this in mind and don't hardcode API 
+and we don't know what our API will evolve into. Keep this in mind and don't hardcode API
 endpoints into your application. Instead, ask the initial endpoints through the API.
 
-For exapmle, calling the root of the api at `/api/` will return the current user, and the user object 
+For exapmle, calling the root of the api at `/api/` will return the current user, and the user object
 includes the URI for the user. Almost all objects include a `resources` object,
 which includes URI endpoints for resources belonging to that object.
 
@@ -54,23 +55,23 @@ For instance, the user object includes
     }
 
 Use the URI endpoints defined in the `resources` object and don't harcode
-the endpoints. If you want to get the user's skills, for instance, don't hardcode 
-the uri as `/api/user/:user_id/skill/` but use the URI defined in resources 
+the endpoints. If you want to get the user's skills, for instance, don't hardcode
+the uri as `/api/user/:user_id/skill/` but use the URI defined in resources
 instead.
 
-Of course, hopefully we will never have the need to change our URI format, but you 
+Of course, hopefully we will never have the need to change our URI format, but you
 never know. It's good to get this right from the start.
 
 Notice that all URIs include a **trailing slash**.
 
 <h2 id="format">Format</h2>
 
-All responses from Skillhive are returned in `JSON` format. 
+All responses from Skillhive are returned in `JSON` format.
 
 <h2 id="responses">Responses</h2>
 
 We embrace the HTTP specification and set the status codes, content types
-and other HTTP headers accordingly. Almost all responses have some common 
+and other HTTP headers accordingly. Almost all responses have some common
 elements in them. These are described below.
 
 ### Listings
@@ -97,7 +98,7 @@ a user object:
     {
       "id":12345,               // All objects have an `id`
       "uri":"/api/user/12345/", // Object URI is always included as `uri`
-      "created_at" :            // Timestamps telling when the object was created... 
+      "created_at" :            // Timestamps telling when the object was created...
       "updated_at" :            // ... and when it was modified.
     }
 
@@ -107,7 +108,7 @@ object include skills and colleagues in the following format
 
     {
       "id":12345,          
-      "uri":"/api/user/12345/", 
+      "uri":"/api/user/12345/",
       "resources":{
         "skills":"/api/user/12345/skill/",
         "colleagues":"/api/user/12345/colleague/"
@@ -130,12 +131,12 @@ hash:
     },
 
 The timestamps hash includes the full `date`, a `friendly_time` string and a localized
-`date_local` string for the date. `date` is formatted in the 
+`date_local` string for the date. `date` is formatted in the
 [RFC 2822 ](http://www.faqs.org/rfcs/rfc2822.html) format
 which is perfect for JavaScript, for instance.
 Notice, that `date_local` is formatted based on
 site language setting in Skillhive. For instance, in the above example `date_local` would
-be `30.1.2014` if Finnish had been chosen as the current language. `friendly_time` is 
+be `30.1.2014` if Finnish had been chosen as the current language. `friendly_time` is
 also translated based on the language setting in Skillhive.
 
 
@@ -143,7 +144,7 @@ also translated based on the language setting in Skillhive.
 
 *Endpoint: `/api/`*
 
-This is the perfect starting points for using the API. Calling `/api/` 
+This is the perfect starting points for using the API. Calling `/api/`
 will return the current user object and the URI endpoints for our API.
 
 <table class="pure-table ">
@@ -187,7 +188,7 @@ An example of a return response:
         "linkedin_url":"http://linkedin.com/",
         "website":"http://intunex.fi",
         "created_at" :
-        "updated_at" : 
+        "updated_at" :
       },
       "resources":{
         "users":"/api/user/",
