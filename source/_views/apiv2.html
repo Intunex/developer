@@ -1,10 +1,11 @@
 {% extends 'base_purecss' %}
 
 {% block body %}
-  
-{% include "/menus/main_menu.html" with { "section": "blog" }%}
+{% include "/menus/main_menu.html" with { "section": page.menu }%}
 
-<div class="pure-g-r" id="layout">
+<div class="pure-g-r side-menu" id="layout">
+  {% include "/menus/apiv2_menu.html" %}
+
   <div class="pure-u-1" id="main">
     {% include "/elements/header.html" %}
 
@@ -15,8 +16,13 @@
 </div><!-- end div layout -->
 {% endblock %}
 
+
 {% block footer %}
-<div class="pure-g-r" id="footer">
+<div class="pure-g-r side-menu" id="footer">
   {% include "/elements/footer.html" %}
 </div>
+{% endblock %}
+
+{% block js_footer %}
+<script src="{{ site.url }}/js/main.js"></script>
 {% endblock %}

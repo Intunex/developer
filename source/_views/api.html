@@ -1,7 +1,7 @@
 {% extends 'base_purecss' %}
 
 {% block body %}
-{% include "/menus/main_menu.html" with { "section": "api" }%}
+{% include "/menus/main_menu.html" with { "section": page.menu }%}
 
 <div class="pure-g-r side-menu" id="layout">
   {% include "/menus/api_menu.html" %}

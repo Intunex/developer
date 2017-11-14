@@ -2,6 +2,7 @@
 layout: api
 title: Swarms
 subtitle: Get swarm data through the Skillhive API
+menu: api
 sub_menu: swarm
 date: 2015-01-22
 ---
@@ -161,7 +162,7 @@ Possible post parameters:
             <td>type</td>
             <td>string</td>
             <td>idea</td>
-            <td>idea, problem, project, message, survey, announcement, objective, 
+            <td>idea, problem, project, message, survey, announcement, objective,
             onboarding, course, certificate, role, expert</td>
             <td>true</td>
         </tr><tr>
@@ -259,12 +260,12 @@ Possible post parameters:
 </table>
 
 Notice that almost all values have some sensible defaults and actually the swarm title is the only
-required parameter you need to send. Notice also, that not all of the swarm attributes are actually 
-used in all swarm types. For instance, the number of allowed participants defined by `participants_min` 
-and `participants_max` parameters are only used for course swarms. The values are saved but they 
+required parameter you need to send. Notice also, that not all of the swarm attributes are actually
+used in all swarm types. For instance, the number of allowed participants defined by `participants_min`
+and `participants_max` parameters are only used for course swarms. The values are saved but they
 won't be shown to users in the Skillhive UI.
 
-If the swarm is created succesfully, the return response will be similar to the 
+If the swarm is created succesfully, the return response will be similar to the
 [single swarm listing](#single) you get through the api.
 
 
@@ -327,7 +328,7 @@ An example of a return response:
       ]
     }
 
-    
+
 *Endpoint: `/api/swarm/:swarm_id/skill/:skill_id/`*
 
 Get a single swarm skill by `skill_id`.
@@ -447,4 +448,3 @@ An example of a return response:
         ...
       ]
     }
-

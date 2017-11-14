@@ -2,6 +2,7 @@
 layout: api
 title: Swarm Checklists
 subtitle: Get checklists through the Skillhive API
+menu: api
 sub_menu: checklist
 date: 2015-01-23
 ---
@@ -122,7 +123,7 @@ Create a new checklist in swarm.
             <td>
               <ul>
                 <li>title: <code>string</code> The title of the Checklist (required)</li>
-                <li>assigned_to: <code>int | hash</code> The user id, or a hash including user id for the user this checklist is assigned to (optional)</li> 
+                <li>assigned_to: <code>int | hash</code> The user id, or a hash including user id for the user this checklist is assigned to (optional)</li>
                 <li>copy_from: <code>int</code> Checklist id for copying the items (optional)</li>
               </ul>            
             </td>
@@ -228,7 +229,7 @@ Update an existing checklist identified by `checklist_id`.
             <td>
               <ul>
                 <li>title: <code>string</code> The title of the Checklist (required)</li>
-                <li>assigned_to: <code>int | hash</code> The user id, or a hash including user id for the user this checklist is assigned to (optional)</li> 
+                <li>assigned_to: <code>int | hash</code> The user id, or a hash including user id for the user this checklist is assigned to (optional)</li>
               </ul>            
             </td>
         </tr>
@@ -485,7 +486,7 @@ Get a single checklist item, for instance:
         "friendly_time": "just now",
         "date_local": "2014-1-30"
     }
-    
+
 
 
 <h2 id="itemupdate">Update a Checklist Item</h2>

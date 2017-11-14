@@ -2,6 +2,7 @@
 layout: api
 title: Swarm Members
 subtitle: Get swarm members through the Skillhive API
+menu: api
 sub_menu: member
 date: 2015-01-23
 ---
@@ -137,11 +138,11 @@ Possible post parameters:
     </tbody>
 </table>
 
-If `user_id` parameter is not sent the user making the request will be added as a member. 
+If `user_id` parameter is not sent the user making the request will be added as a member.
 Optionally, you can also define start and end dates for the membership. Notice, that the
 dates are not used in all swarm types.
 
-If the membership is succesfully created, the returned response will be similar to the 
+If the membership is succesfully created, the returned response will be similar to the
 result when viewing [a single membership](#single).         
 
 
@@ -200,9 +201,9 @@ Return the membership, for instance:
         "email": "testuser@skillhive.com",
       }
     }
-    
-Some swarm types can have special user roles in the swarm. For instance, course swarms may 
-have teachers and onboarding swarms might have onboardess. 
+
+Some swarm types can have special user roles in the swarm. For instance, course swarms may
+have teachers and onboarding swarms might have onboardess.
 
 
 <h2 id="update">Update a Membership</h2>
@@ -226,14 +227,14 @@ Update an existing membership identified by `user_id`.
             <td>
               <ul>
                 <li>start_at <code>string</code> The start date.</li>
-                <li>end_at <code>string</code> The end date.</li> 
+                <li>end_at <code>string</code> The end date.</li>
               </ul>            
             </td>
         </tr>
     </tbody>
 </table>
 
-If the membership is succesfully updated, the returned response will be similar to the 
+If the membership is succesfully updated, the returned response will be similar to the
 result when viewing [a single membership](#single).         
 
 
@@ -241,7 +242,7 @@ result when viewing [a single membership](#single).
 
 *Endpoint: `/api/swarm/:swarm_id/member/:user_id`*
 
-Remove a user from swarm identified by `user_id`. 
+Remove a user from swarm identified by `user_id`.
 
 <table class="pure-table">
     <thead>
