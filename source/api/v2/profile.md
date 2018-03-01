@@ -183,9 +183,11 @@ An example of a return response:
           "xlarge": "Absolute <URL to extra large version of user icon>"
           "master": "Absolute <URL to the original version of user icon>"
         },
+        "is-supervisor": true,
         "competence": 0,      // Competence, interest and...
         "interest": 0,        // ... recommendations are only available
         "recommendations": 0, // ... when you're searching users by skills.
+		"terms-accepted-at": "Wed, 21 Feb 2018 20:50:26 +0200",
         "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
         "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
         "price": 145, // Prices are only used in some sites
@@ -333,13 +335,19 @@ Here is a more detailed description of all the user attributes and how to update
             <td>is-enabled</td>
             <td>boolean</td>
             <td>true</td>
-            <td>A simple boolean stating if the user account is enabled or not. Disabled users cannot log in or do anything in Skillhive.</td>
+            <td>A simple boolean stating if the user account is enabled or not. Disabled users cannot log in and will not show up in user listings or searches. <strong>NOTICE!</strong> This value can only be changed by administrators and not the users themselves.</td>
+        </tr>
+        <tr>
+            <td>is-supervisor</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Is the user a supervisor of any other users. This value cannot be updated through the API, it's calculated based on user relationships.</td>
         </tr>
         <tr>
             <td>access-level</td>
             <td>string</td>
             <td>true</td>
-            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code> and <code>ext</code>.</td>
+            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code> and <code>ext</code>. <strong>NOTICE!</strong> This value can only be changed by administrators and not he users themselves.</td>
         </tr>
         <tr>
             <td>price</td>
@@ -364,6 +372,12 @@ Here is a more detailed description of all the user attributes and how to update
             <td>string</td>
             <td>false</td>
             <td>An alternate id that's only used in integrations to other service.</td>
+        </tr>
+        <tr>
+            <td>terms-accepted-at</td>
+            <td>string</td>
+            <td>false</td>
+            <td>A timestamp when the user accepted the terms of service. <code>null</code> if terms are not accepted yet.</td>
         </tr>
     </tbody>
 </table>
