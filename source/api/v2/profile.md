@@ -4,12 +4,13 @@ title: Users
 subtitle: Get user data through the Skillhive API
 menu: apiv2
 sub_menu: profile
-date: 2017-11-14
+date: 2018-03-01
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
         <li><a href="#list">List all users</a></li>
         <li><a href="#single">Get a single user</a></li>
+        <li><a href="#create">Add a new user</a></li>
     </ul>
 </div>
 
@@ -48,21 +49,6 @@ This is also the main endpoint for searching for users.
                     <li><code>interest</code> Sort by matched interest (only available when searching users by skills)</li>
                     <li><code>recommendations</code> Sort by the number of recommendations the users have got (only available when searching users by skills)</li>
                     <li><code>price</code> Sort by user defined price (only available in select sites)</li>
-                  </ul>
-                </li>
-              </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>POST</td>
-            <td>Create user</td>
-            <td>
-              <ul>
-                <li><code>offset</code>: <code>int</code> fetch profiles starting from (optional, default: 0)</li>
-                <li><code>limit</code>: <code>int</code> how many profiles to get (optional, default: 20, limit 0-50)</li>
-                <li>Optional search options:
-                  <ul>
-                    <li><code>skill[]</code> Match users by these skills.</li>
                   </ul>
                 </li>
               </ul>
@@ -381,3 +367,48 @@ Here is a more detailed description of all the user attributes and how to update
         </tr>
     </tbody>
 </table>
+
+
+<h2 id="create">Create a new user</h2>
+
+*Endpoint: `/api/users`*
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create user</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+You can add new user accounts to Skillhive by doing a `POST` request to the api endpoint. Here's an example request to post:
+
+	{
+      "data": {
+        "type": "users",
+        "attributes": {     // User attributes
+          "name": "Jaakko Naakka",
+          "email": "jaakko.naakka@intunex.fi",
+        }
+      }
+    }
+
+The API endpoint will return a `201 Created` response with all the data for the newly created user. The data includes
+all the same data you get when you're [fetching a single user by id](#single). If a non-admin user tries to create new 
+user accounts, they will get a `403 Forbidden` response instead.
+
+Creating new user accounts is actually pretty simple. The only really required value is `email`. Notice, that
+email has to be unique across all users in Skillhive.
+
+
+
+
