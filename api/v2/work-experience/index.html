@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Work Experience &middot; Skillhive Developer Community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Intunex Oy">
+    
+                  
+          <meta name="description" content="
+    
+        List user&#039;s work experience
+        Single work experience items
+        Add new work experience
+    
+
+
+List user&#039;s work experience
+
+End">    
+        
+        
+    <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+  <link href="http://intunex.github.io/developer/css/main.css" rel="stylesheet">  
+      </head>
+  <body>
+    <!-- Static top bar Main Menu -->
+<div id="topbar">
+  <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    <a class="pure-menu-heading" href="http://intunex.github.io/developer">Skillhive Developers</a>
+
+    <ul>
+      <li  class="pure-menu-selected" ><a href="http://intunex.github.io/developer/api/v2/">API v2</a></li>
+      <li ><a href="http://intunex.github.io/developer/api/">API v1</a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="pure-g-r side-menu" id="layout">
+  <!-- Responsive sidebar menu for API section -->
+<a href="#menu" id="menuLink" class="pure-menu-link"><span></span></a>
+
+<div class="pure-u" id="menu">
+  <div class="pure-menu pure-menu-open">
+      <ul>
+          <li ><a href="http://intunex.github.io/developer/api/v2/">Introduction</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/authentication/">Authentication</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/profile/">User Profiles</a></li>
+          <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/v2/work-experience/">Work experience</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/education/">Education</a></li>
+      </ul>
+  </div>
+</div>
+
+  <div class="pure-u-1" id="main">
+    <div class="header">
+  <h1>Work Experience</h1>
+      <h2>Get and update a user&#039;s work experience.</h2>
+  </div>
+
+    <div class="content">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="#list">List user's work experience</a></li>
+        <li><a href="#single">Single work experience items</a></li>
+        <li><a href="#create">Add new work experience</a></li>
+    </ul>
+</div>
+
+<h2 id="list">List user's work experience</h2>
+
+<p><em>Endpoint: <code>/api/v2/work-experiences</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>List a user's work experience</td>
+            <td>
+              <ul>
+                <li><code>user</code>: <code>int</code> the user ID whose work experience you want to list. <strong>REQUIRED</strong></li>
+                <li><code>offset</code>: <code>int</code> fetch work experience starting from (optional, default: 0)</li>
+                <li><code>limit</code>: <code>int</code> how many items to get (optional, default: 20, limit 0-50)</li>
+              </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>An example of a return response for a url like <code>/api/v2/work-experiences?&amp;user=12345678</code></p>
+
+<pre><code>"data": [ // The returned work experience collection
+  {
+    "type": "work-experience",
+    "id": "123456",
+    "attributes": {
+      "title": "CTO",
+      "institution": "Intunex Oy",
+      "description": "Develop Skillhive.",
+      "start-year": "2010",
+      "end-year": null,
+      "is-current": true,
+      "linkedin-id": null,
+      "created-at": "Thu, 10 Aug 2017 11:15:31 +0300",
+      "updated-at": "Thu, 10 Aug 2017 11:15:31 +0300"
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "type": "users",
+          "id": "12345678"
+        }
+      }
+    }
+  },
+  ... // More work experience itms.
+],
+"meta": {
+  "total-count": 7 // Total number of items for this user
+}
+</code></pre>
+
+<h2 id="single">Single work experience items</h2>
+
+<p><em>Endpoint: <code>/api/work-experiences/:workexperience_id</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DELETE</td>
+            <td>Delete work experience identified by <code>workexperience_id</code></td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="create">Add new work experience</h2>
+
+<p><em>Endpoint: <code>/api/v2/work-experiences</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Add new work experience</td>
+            <td>
+            N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>New work experience is added by issuing a <code>POST</code> request to the api endpoint <code>/api/v2/work-experiences</code>.</p>
+
+<p>Here's an example request to post:</p>
+
+<pre><code>{
+  "data": {
+    "type": "work-experience",
+    "attributes": {
+      "title": "CTO",
+      "institution": "Intunex Oy",
+      "description": "Develop Skillhive.",
+      "start-year": "2010",
+      "end-year": null,
+      "is-current": true,
+      "linkedin-id": null,
+      "created-at": "Thu, 10 Aug 2017 11:15:31 +0300",
+      "updated-at": "Thu, 10 Aug 2017 11:15:31 +0300"
+    },
+    "relationships": {
+      "user": { // This defines the user whose work experience this is.
+        "data": {
+          "type": "users",
+          "id": "12345678"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>The API endpoint will return a <code>201 Created</code> response with all the data for the newly created item.</p>
+    </div>
+  </div> <!-- end div main -->
+</div><!-- end div layout -->
+    <div class="pure-g-r side-menu" id="footer">
+    <div class="pure-u-1-2">
+      &copy; Intunex Oy 2018
+  </div><div class="pure-u-1-2">
+              <div class="pull-right">
+          Updated on 01 Mar 2018
+        </div>
+        </div>
+</div>
+    <script src="http://intunex.github.io/developer/js/main.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17540740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+  </body>
+</html>

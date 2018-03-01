@@ -10,14 +10,13 @@
     
         List all users
         Get a single user
+        Add a new user
     
 
 
 List all users in Skillhive
 
-This is also the main endpoint for searching for users.
-
-En">    
+This is also the main endpoint for s">    
         
         
     <link rel="shortcut icon" href="http://intunex.github.io/developer/favicon.ico" />
@@ -51,6 +50,8 @@ En">
           <li ><a href="http://intunex.github.io/developer/api/v2/">Introduction</a></li>
           <li ><a href="http://intunex.github.io/developer/api/v2/authentication/">Authentication</a></li>
           <li  class="pure-menu-selected"><a href="http://intunex.github.io/developer/api/v2/profile/">User Profiles</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/work-experience/">Work experience</a></li>
+          <li ><a href="http://intunex.github.io/developer/api/v2/education/">Education</a></li>
       </ul>
   </div>
 </div>
@@ -66,6 +67,7 @@ En">
     <ul>
         <li><a href="#list">List all users</a></li>
         <li><a href="#single">Get a single user</a></li>
+        <li><a href="#create">Add a new user</a></li>
     </ul>
 </div>
 
@@ -104,21 +106,6 @@ En">
                     <li><code>interest</code> Sort by matched interest (only available when searching users by skills)</li>
                     <li><code>recommendations</code> Sort by the number of recommendations the users have got (only available when searching users by skills)</li>
                     <li><code>price</code> Sort by user defined price (only available in select sites)</li>
-                  </ul>
-                </li>
-              </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>POST</td>
-            <td>Create user</td>
-            <td>
-              <ul>
-                <li><code>offset</code>: <code>int</code> fetch profiles starting from (optional, default: 0)</li>
-                <li><code>limit</code>: <code>int</code> how many profiles to get (optional, default: 20, limit 0-50)</li>
-                <li>Optional search options:
-                  <ul>
-                    <li><code>skill[]</code> Match users by these skills.</li>
                   </ul>
                 </li>
               </ul>
@@ -239,9 +226,11 @@ En">
       "xlarge": "Absolute &lt;URL to extra large version of user icon&gt;"
       "master": "Absolute &lt;URL to the original version of user icon&gt;"
     },
+    "is-supervisor": true,
     "competence": 0,      // Competence, interest and...
     "interest": 0,        // ... recommendations are only available
     "recommendations": 0, // ... when you're searching users by skills.
+    "terms-accepted-at": "Wed, 21 Feb 2018 20:50:26 +0200",
     "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
     "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
     "price": 145, // Prices are only used in some sites
@@ -390,13 +379,19 @@ user roles themselves.</p>
             <td>is-enabled</td>
             <td>boolean</td>
             <td>true</td>
-            <td>A simple boolean stating if the user account is enabled or not. Disabled users cannot log in or do anything in Skillhive.</td>
+            <td>A simple boolean stating if the user account is enabled or not. Disabled users cannot log in and will not show up in user listings or searches. <strong>NOTICE!</strong> This value can only be changed by administrators and not the users themselves.</td>
+        </tr>
+        <tr>
+            <td>is-supervisor</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Is the user a supervisor of any other users. This value cannot be updated through the API, it's calculated based on user relationships.</td>
         </tr>
         <tr>
             <td>access-level</td>
             <td>string</td>
             <td>true</td>
-            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code> and <code>ext</code>.</td>
+            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code> and <code>ext</code>. <strong>NOTICE!</strong> This value can only be changed by administrators and not he users themselves.</td>
         </tr>
         <tr>
             <td>price</td>
@@ -422,17 +417,64 @@ user roles themselves.</p>
             <td>false</td>
             <td>An alternate id that's only used in integrations to other service.</td>
         </tr>
+        <tr>
+            <td>terms-accepted-at</td>
+            <td>string</td>
+            <td>false</td>
+            <td>A timestamp when the user accepted the terms of service. <code>null</code> if terms are not accepted yet.</td>
+        </tr>
     </tbody>
 </table>
+
+<h2 id="create">Create a new user</h2>
+
+<p><em>Endpoint: <code>/api/users</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create user</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<p>You can add new user accounts to Skillhive by doing a <code>POST</code> request to the api endpoint. Here's an example request to post:</p>
+
+<pre><code>{
+  "data": {
+    "type": "users",
+    "attributes": {     // User attributes
+      "name": "Jaakko Naakka",
+      "email": "jaakko.naakka@intunex.fi",
+    }
+  }
+}
+</code></pre>
+
+<p>The API endpoint will return a <code>201 Created</code> response with all the data for the newly created user. The data includes
+all the same data you get when you're <a href="#single">fetching a single user by id</a>. If a non-admin user tries to create new 
+user accounts, they will get a <code>403 Forbidden</code> response instead.</p>
+
+<p>Creating new user accounts is actually pretty simple. The only really required value is <code>email</code>. Notice, that
+email has to be unique across all users in Skillhive.</p>
     </div>
   </div> <!-- end div main -->
 </div><!-- end div layout -->
     <div class="pure-g-r side-menu" id="footer">
     <div class="pure-u-1-2">
-      &copy; Intunex Oy 2017
+      &copy; Intunex Oy 2018
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 14 Nov 2017
+          Updated on 01 Mar 2018
         </div>
         </div>
 </div>
