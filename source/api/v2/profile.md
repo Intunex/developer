@@ -333,7 +333,7 @@ Here is a more detailed description of all the user attributes and how to update
             <td>access-level</td>
             <td>string</td>
             <td>true</td>
-            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code> and <code>ext</code>. <strong>NOTICE!</strong> This value can only be changed by administrators and not he users themselves.</td>
+            <td>User's access level. Allowed values are <code>user</code>, <code>admin</code>, <code>ext</code> and <code>excluded</code>. <strong>NOTICE!</strong> This value can only be changed by administrators and not he users themselves.</td>
         </tr>
         <tr>
             <td>price</td>
