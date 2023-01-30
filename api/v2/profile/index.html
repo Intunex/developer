@@ -9,14 +9,14 @@
           <meta name="description" content="
     
         List all users
-        Get a single user
+        Get or update a single user
         Add a new user
     
 
 
 List all users in Skillhive
 
-This is also the main endpoint for s">    
+This is also the main endp">    
         
         
     <link rel="shortcut icon" href="https://intunex.github.io/developer/favicon.ico" />
@@ -66,7 +66,7 @@ This is also the main endpoint for s">
       <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
         <li><a href="#list">List all users</a></li>
-        <li><a href="#single">Get a single user</a></li>
+        <li><a href="#single">Get or update a single user</a></li>
         <li><a href="#create">Add a new user</a></li>
     </ul>
 </div>
@@ -116,12 +116,97 @@ This is also the main endpoint for s">
 
 <p>An example of a return response:</p>
 
-<pre><code>"data": [ // The returned user collection
-  { // A user object
+<pre><code>{
+  "data": [ // The returned user collection
+    { // A user object
+      "type": "users",
+      "id": "12345",      // The user id
+      "attributes": {     // User attributes
+        "first-name": "Jaakko",
+        "last-name": "Naakka",
+        "email": "jaakko.naakka@intunex.fi",
+        "description": "",
+        "location": [
+          "Finland",
+          "Akaa"
+        ],
+        "unit": [
+          "Development"
+        ],
+        "phone": [
+          "123455"
+        ],
+        "mobile": [
+          "123466"
+        ],
+        "is-enabled": true,
+        "access-level": "admin",
+        "img-url": {
+          "small": "&lt;Absolute URL to small version of user icon&gt;",
+          "medium": "Absolute &lt;URL to medium version of user icon&gt;",
+          "large": "Absolute &lt;URL to large version of user icon&gt;"
+          "xlarge": "Absolute &lt;URL to extra large version of user icon&gt;"
+          "master": "Absolute &lt;URL to the original version of user icon&gt;"
+        },
+        "competence": 0,      // Competence, interest and...
+        "interest": 0,        // ... recommendations are only available
+        "recommendations": 0, // ... when you're searching users by skills.
+        "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
+        "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
+        "price": 145, // Prices are only used in some sites
+        "price2": 8.45,
+        "price3": 780,
+        "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
+      },
+      "links": {
+        "self": "/api/v2/users/2972"  // API link to the user profile itself
+      }
+    },
+    ... // More user accounts.
+  ],
+  "meta": {
+    "total-count": 145 // Number of user account.
+  }
+}
+</code></pre>
+
+<h2 id="single">Get or update a single user</h2>
+
+<p><em>Endpoint: <code>/api/v2/users/:user_id</code></em></p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Action</th>
+            <th>Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Get user profile defined by <code>user_id</code></td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>PATCH</td>
+            <td>Update a user profile identified by <code>user_id</code></td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Get a Single User</h3>
+
+<p>An example of a return response to a <code>GET</code> request:</p>
+
+<pre><code>{
+  "data": {
     "type": "users",
     "id": "12345",      // The user id
     "attributes": {     // User attributes
-      "name": "Jaakko Naakka",
+      "first-name": "Jaakko",
+      "last-name": "Naakka",
       "email": "jaakko.naakka@intunex.fi",
       "description": "",
       "location": [
@@ -146,130 +231,73 @@ This is also the main endpoint for s">
         "xlarge": "Absolute &lt;URL to extra large version of user icon&gt;"
         "master": "Absolute &lt;URL to the original version of user icon&gt;"
       },
+      "is-supervisor": true,
       "competence": 0,      // Competence, interest and...
       "interest": 0,        // ... recommendations are only available
       "recommendations": 0, // ... when you're searching users by skills.
+  "terms-accepted-at": "Wed, 21 Feb 2018 20:50:26 +0200",
       "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
       "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
       "price": 145, // Prices are only used in some sites
       "price2": 8.45,
       "price3": 780,
       "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
-    },
-    "links": {
-      "self": "/api/v2/users/2972"  // API link to the user profile itself
     }
   },
-  ... // More user accounts.
-],
-"meta": {
-  "total-count": 145 // Number of user account.
+  relationships": {
+    "roles": {
+      "data": [
+        {
+          "type": "userroles",
+          "id": "47244"
+        },
+        {
+          "type": "userroles",
+          "id": "14251"
+        }
+      ]
+    }    
+  },
+  "included": [
+    {
+      "type": "userroles",
+      "id": "47244",
+      "attributes": {
+        "title": "Software Developers"
+      }
+    },
+    {
+      "type": "userroles",
+      "id": "14251",
+      "attributes": {
+        "title": "Design Team"
+      }
+    },
+  ]
 }
 </code></pre>
 
-<p>}</p>
+<h3>Update a single user</h3>
 
-<h2 id="single">Fetch a single user profile</h2>
+<p>Here's an example <code>PATCH</code> request to update a user's first and last name. When
+updating a user profile, it's only necessary to send the values for the updated
+fields.</p>
 
-<p><em>Endpoint: <code>/api/users/:user_id</code></em></p>
+<p>Here's en example json data for a <code>PATCH</code> request to <code>/api/v2/users/12345</code></p>
 
-<table class="pure-table">
-    <thead>
-        <tr>
-            <th>Method</th>
-            <th>Action</th>
-            <th>Parameters</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>GET</td>
-            <td>Get user profile defined by <code>user_id</code></td>
-            <td>N/A</td>
-        </tr>
-        <tr>
-            <td>PATCH</td>
-            <td>Update a user profile identified by <code>user_id</code></td>
-            <td>N/A</td>
-        </tr>
-    </tbody>
-</table>
-
-<p>An example of a return response:</p>
-
-<pre><code>"data": {
-  "type": "users",
-  "id": "12345",      // The user id
-  "attributes": {     // User attributes
-    "name": "Jaakko Naakka",
-    "email": "jaakko.naakka@intunex.fi",
-    "description": "",
-    "location": [
-      "Finland",
-      "Akaa"
-    ],
-    "unit": [
-      "Development"
-    ],
-    "phone": [
-      "123455"
-    ],
-    "mobile": [
-      "123466"
-    ],
-    "is-enabled": true,
-    "access-level": "admin",
-    "img-url": {
-      "small": "&lt;Absolute URL to small version of user icon&gt;",
-      "medium": "Absolute &lt;URL to medium version of user icon&gt;",
-      "large": "Absolute &lt;URL to large version of user icon&gt;"
-      "xlarge": "Absolute &lt;URL to extra large version of user icon&gt;"
-      "master": "Absolute &lt;URL to the original version of user icon&gt;"
-    },
-    "is-supervisor": true,
-    "competence": 0,      // Competence, interest and...
-    "interest": 0,        // ... recommendations are only available
-    "recommendations": 0, // ... when you're searching users by skills.
-    "terms-accepted-at": "Wed, 21 Feb 2018 20:50:26 +0200",
-    "created-at": "Thu, 07 Jun 2012 15:25:42 +0300",
-    "updated-at": "Thu, 14 Sep 2017 11:36:17 +0300",
-    "price": 145, // Prices are only used in some sites
-    "price2": 8.45,
-    "price3": 780,
-    "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
+<pre><code>{
+    "data": {
+    "attributes": {
+      "first-name": "Jane",
+      "last-name": "Doe"
+    }
   }
-},
-relationships": {
-  "roles": {
-    "data": [
-      {
-        "type": "userroles",
-        "id": "47244"
-      },
-      {
-        "type": "userroles",
-        "id": "14251"
-      }
-    ]
-  }    
-},
-"included": [
-  {
-    "type": "userroles",
-    "id": "47244",
-    "attributes": {
-      "title": "Software Developers"
-    }
-  },
-  {
-    "type": "userroles",
-    "id": "14251",
-    "attributes": {
-      "title": "Design Team"
-    }
-  },
-]
+}
 </code></pre>
+
+<p>The return response will include the full, updated user profile.</p>
+
+<h3>The Return Response</h3>
 
 <p>As you can see, when you fetch a single user profile, the response includes a lot
 more information about the user than the generic list endpoint does.</p>
@@ -304,10 +332,16 @@ user roles themselves.</p>
             <td>ID is always provided by Skillhive and it cannot be changed. At the moment, all ids are of type <code>int</code> but this will change into strings in the future.</td>
         </tr>
         <tr>
-            <td>name</td>
+            <td>first-name</td>
             <td>string</td>
             <td>true</td>
-            <td>Name of the user.</td>
+            <td>First name of the user.</td>
+        </tr>
+        <tr>
+            <td>last-name</td>
+            <td>string</td>
+            <td>true</td>
+            <td>Last name of the user.</td>
         </tr>
         <tr>
             <td>email</td>
@@ -428,7 +462,7 @@ user roles themselves.</p>
 
 <h2 id="create">Create a new user</h2>
 
-<p><em>Endpoint: <code>/api/users</code></em></p>
+<p><em>Endpoint: <code>/api/v2/users</code></em></p>
 
 <table class="pure-table">
     <thead>
@@ -453,7 +487,8 @@ user roles themselves.</p>
   "data": {
     "type": "users",
     "attributes": {     // User attributes
-      "name": "Jaakko Naakka",
+      "first-name": "Jaakko",
+      "last-name": "Naakka",
       "email": "jaakko.naakka@intunex.fi",
     }
   }
@@ -471,10 +506,10 @@ email has to be unique across all users in Skillhive.</p>
 </div><!-- end div layout -->
     <div class="pure-g-r side-menu" id="footer">
     <div class="pure-u-1-2">
-      &copy; Intunex Oy 2022
+      &copy; Intunex Oy 2023
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 01 Mar 2018
+          Updated on 30 Jan 2023
         </div>
         </div>
 </div>
