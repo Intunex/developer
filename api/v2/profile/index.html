@@ -241,7 +241,10 @@ This is also the main endp">
       "price": 145, // Prices are only used in some sites
       "price2": 8.45,
       "price3": 780,
-      "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
+      "alt-id": "cds7csd9423423", // An alternate id used only to identify user accounts in other services
+      "feedback-avg": 3.45,
+      "feedback-avg-latest": 4.49,
+      "feedback-avg-latest-at": "Mon, 20 Feb 2023 08:25:42 +0300",
     }
   },
   relationships": {
@@ -457,6 +460,24 @@ user roles themselves.</p>
             <td>false</td>
             <td>A timestamp when the user accepted the terms of service. <code>null</code> if terms are not accepted yet.</td>
         </tr>
+        <tr>
+            <td>feedback-avg</td>
+            <td>float</td>
+            <td>false</td>
+            <td>All time average for user feedback. Value range is 0.00 - 9.99.</td>
+        </tr>
+        <tr>
+            <td>feedback-avg-latest</td>
+            <td>float</td>
+            <td>false</td>
+            <td>Average feedback for the latest training. Value range is 0.00 - 9.99.</td>
+        </tr>
+        <tr>
+            <td>feedback-avg-latest-at</td>
+            <td>string</td>
+            <td>false</td>
+            <td>Datetime of latest feedback received.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -509,7 +530,7 @@ email has to be unique across all users in Skillhive.</p>
       &copy; Intunex Oy 2023
   </div><div class="pure-u-1-2">
               <div class="pull-right">
-          Updated on 30 Jan 2023
+          Updated on 20 Feb 2023
         </div>
         </div>
 </div>
