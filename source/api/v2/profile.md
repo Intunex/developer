@@ -4,7 +4,7 @@ title: Users
 subtitle: Get user data through the Skillhive API
 menu: apiv2
 sub_menu: profile
-date: 2023-01-30
+date: 2023-02-20
 ---
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul>
@@ -184,7 +184,10 @@ An example of a return response to a `GET` request:
           "price": 145, // Prices are only used in some sites
           "price2": 8.45,
           "price3": 780,
-          "alt-id": "cds7csd9423423" // An alternate id used only to identify user accounts in other services
+          "alt-id": "cds7csd9423423", // An alternate id used only to identify user accounts in other services
+          "feedback-avg": 3.45,
+          "feedback-avg-latest": 4.49,
+          "feedback-avg-latest-at": "Mon, 20 Feb 2023 08:25:42 +0300",
         }
       },
       relationships": {
@@ -395,6 +398,24 @@ Here is a more detailed description of all the user attributes and how to update
             <td>string</td>
             <td>false</td>
             <td>A timestamp when the user accepted the terms of service. <code>null</code> if terms are not accepted yet.</td>
+        </tr>
+        <tr>
+            <td>feedback-avg</td>
+            <td>float</td>
+            <td>false</td>
+            <td>All time average for user feedback. Value range is 0.00 - 9.99.</td>
+        </tr>
+        <tr>
+            <td>feedback-avg-latest</td>
+            <td>float</td>
+            <td>false</td>
+            <td>Average feedback for the latest training. Value range is 0.00 - 9.99.</td>
+        </tr>
+        <tr>
+            <td>feedback-avg-latest-at</td>
+            <td>string</td>
+            <td>false</td>
+            <td>Datetime of latest feedback received.</td>
         </tr>
     </tbody>
 </table>
