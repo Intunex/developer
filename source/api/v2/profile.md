@@ -310,6 +310,12 @@ Here is a more detailed description of all the user attributes and how to update
             <td>An array of strings.</td>
         </tr>
         <tr>
+            <td>additional-info</td>
+            <td>string</td>
+            <td>false</td>
+            <td>Additional info used only in some customer sites. Max length 300 characters.</td>
+        </tr>
+        <tr>
             <td>phone</td>
             <td>array</td>
             <td>false</td>
@@ -322,7 +328,7 @@ Here is a more detailed description of all the user attributes and how to update
             <td>Array of mobile numbers as strings.</td>
         </tr>
         <tr>
-            <td>jobtitle</td>
+            <td>job-title</td>
             <td>array</td>
             <td>false</td>
             <td>Array of strings.</td>
